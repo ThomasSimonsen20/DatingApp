@@ -1,0 +1,4 @@
+INSERT INTO `DatingAppData`.`Users` (`FirstName`, `SurName`, `TelephoneNumber`, `ZipCode`, `City`, `Street`, `HouseNumber`) VALUES ('Hanne', 'Jensen', '12345678', '5900', 'Rudkøbing', 'Ringvejen', '8');
+INSERT INTO `DatingAppData`.`Users` (`FirstName`, `SurName`, `TelephoneNumber`, `ZipCode`, `City`, `Street`, `HouseNumber`, `HouseFloor`) VALUES ('Suzi', 'Nielsen', '87654321', '5700', 'Svendborg', 'Bystrædet', '19', '2. th');
+INSERT INTO `DatingAppData`.`Users` (`FirstName`, `SurName`, `TelephoneNumber`, `ZipCode`, `City`, `Street`, `HouseNumber`) VALUES ('Jørgen', 'Thomsen', '22445341', '5000', 'Odense', 'Bjørnevænget', '7');
+INSERT INTO `DatingAppData`.`Users` (`FirstName`, `SurName`, `TelephoneNumber`, `ZipCode`, `City`, `Street`, `HouseNumber`) VALUES ('Ejnar', 'Madsen', '76587351', '5300', 'Kerteminde', 'Altergade', '105');

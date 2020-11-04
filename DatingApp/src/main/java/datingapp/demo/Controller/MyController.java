@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MyController {
-
+    JDBCWriter jdbcWriter = new JDBCWriter();
 
     @GetMapping("/")
-    public String welcome() {
+    public String welcome(Model model) {
+        model.addAttribute("Connect", jdbcWriter.setConnection());
         return "login";
     }
 

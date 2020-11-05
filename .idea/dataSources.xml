@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="DatingAppData@localhost" uuid="408b4f5c-33db-4d7d-b5d7-7e063d213d94">
+    <data-source source="LOCAL" name="DatingAppData@127.0.0.1" uuid="2d8949f9-ba2b-4a89-8705-ce9d1508094f">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/DatingAppData?serverTimezone=UTC</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/DatingAppData?serverTimezone=UTC</jdbc-url>
     </data-source>
   </component>
 </project>

@@ -24,6 +24,29 @@ public class UserMapper {
 
      */
 
+    public User login(String email, String password) throws LoginSampleException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT id, role FROM Users "
+                    + "WHERE email=? AND password=?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String role = rs.getString("role");
+                int id = rs.getInt("id");
+                User user = new User(email, password, role);
+                user.setId(id);
+                return user;
+            } else {
+                throw new LoginSampleException("Could not validate user");
+            }
+        } catch (SQLException | LoginSampleException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    /*
+
     public User login() {
         User user = null;
         try {
@@ -42,5 +65,7 @@ public class UserMapper {
         }
         return user;
     }
+
+     */
 
 }

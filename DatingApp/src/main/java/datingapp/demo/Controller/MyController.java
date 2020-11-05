@@ -34,6 +34,8 @@ public class MyController {
         return "login";
     }
 
+
+    /*
     @GetMapping("/test")
     @ResponseBody
     public String test() throws SQLException {
@@ -41,6 +43,8 @@ public class MyController {
 
         return new UserMapper().login().toString();
     }
+
+     */
 
 
 }

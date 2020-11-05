@@ -15,8 +15,10 @@ public class JDBCWriter {
 
         try {
             //Attempt to establish connection, pass user details
-            connection = DriverManager.getConnection(url, "Thomas ", "1");
+            connection = DriverManager.getConnection(url, "MikkelVase", "1");
+           // connection = DriverManager.getConnection(url, "Thomas", "1");
             gotCon = true;
+            System.out.println("Connection established");
         } catch (SQLException throwables) {
             System.out.println("Connection failed = " + throwables.getMessage());
         }

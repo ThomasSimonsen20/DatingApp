@@ -15,7 +15,7 @@ public class LoginController {
 
     public User createUser(String email, String password) throws LoginSampleException {
         // By default, new users are customers
-        User user = new User(email, password, false);
+        User user = new User(email, password, true);
         facade.createUser(user);
         return user;
     }

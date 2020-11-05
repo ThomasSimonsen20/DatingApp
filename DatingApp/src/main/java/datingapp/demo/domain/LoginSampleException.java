@@ -1,4 +1,4 @@
-package datingapp.demo.Controller;
+package datingapp.demo.domain;
 
 public class LoginSampleException extends Exception {
 

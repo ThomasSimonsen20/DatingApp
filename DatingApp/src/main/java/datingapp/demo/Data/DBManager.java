@@ -1,4 +1,4 @@
-package datingapp.demo.Controller;
+package datingapp.demo.Data;
 
 import java.io.FileInputStream;
 import java.io.IOException;

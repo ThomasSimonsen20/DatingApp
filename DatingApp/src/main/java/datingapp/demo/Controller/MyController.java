@@ -35,18 +35,4 @@ public class MyController {
     }
 
 
-    @RestController
-    @RequestMapping("/users")
-    public class UserController{
-        @Autowired
-        private UserRepository userRepository;
-
-        @GetMapping
-        public Iterable<Users> getUsers(){
-            return this.userRepository.findAll();
-        }
-
-
-    }
-
 }

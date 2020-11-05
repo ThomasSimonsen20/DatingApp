@@ -8,15 +8,15 @@ public class JDBCWriter {
 
     public boolean setConnection() {
         //Input which database to connect to
-        final String url = "jdbc:mysql://127.0.0.1:3306?serverTimezone=UTC";
+        final String url = "jdbc:mysql://localhost:3306/DatingAppData?serverTimeZone=UTC";
 
         //default connection result is false
         boolean gotCon = false;
 
         try {
             //Attempt to establish connection, pass user details
-            connection = DriverManager.getConnection(url, "MikkelVase", "1");
-           // connection = DriverManager.getConnection(url, "Thomas", "1");
+            connection = DriverManager.getConnection(url, "test", "test");
+
             gotCon = true;
             System.out.println("Connection established");
         } catch (SQLException throwables) {

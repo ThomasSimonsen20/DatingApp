@@ -1,3 +1,8 @@
+DROP DATABASE IF EXISTS `hello`;
+CREATE DATABASE `hello`;
+USE `hello`;
+
+
 CREATE TABLE Users (
   `idUsers` int NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(45) NOT NULL,

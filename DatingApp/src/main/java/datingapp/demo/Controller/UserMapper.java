@@ -4,6 +4,7 @@ import java.sql.*;
 
 public class UserMapper {
 
+
     /*public void createUser(User user) {
         try {
             Connection con = DBManager.getConnection();
@@ -24,6 +25,7 @@ public class UserMapper {
 
      */
 
+    // Retunere den første user den finder med firstname og Zipcode.
     public User login() {
         User user = null;
         try {
@@ -32,13 +34,15 @@ public class UserMapper {
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+
+
                 String f = rs.getString("FirstName");
                 int z = rs.getInt("ZipCode");
                 user = new User(f, z);
 
-            }
-        } catch (SQLException ex) {
-
+}
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return user;
     }

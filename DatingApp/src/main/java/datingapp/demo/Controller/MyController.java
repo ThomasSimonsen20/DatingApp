@@ -34,7 +34,8 @@ public class MyController {
         setSessionInfo(request, user);
 
         // Go to to page dependent on role
-        return "home" + user.isAdmin();
+        //return "home" + user.isAdmin();
+        return "home";
     }
 
 

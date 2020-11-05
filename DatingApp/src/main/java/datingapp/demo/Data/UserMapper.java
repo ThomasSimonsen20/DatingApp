@@ -11,7 +11,7 @@ public class UserMapper {
     public User login(String email, String password) throws LoginSampleException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT idUsers, IsAdmin FROM Users "
+            String SQL = "SELECT idUsers, IsAdmin FROM users "
                     + "WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, email);

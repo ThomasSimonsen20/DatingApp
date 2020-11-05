@@ -2,12 +2,12 @@ package datingapp.demo.Controller;
 
 
 import datingapp.demo.LoginForm.LoginForm;
-import datingapp.demo.data.entity.Users;
-import datingapp.demo.data.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @Controller
 public class MyController {
@@ -32,6 +32,14 @@ public class MyController {
         model.addAttribute("invalidCredentials", true);
 
         return "login";
+    }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test() throws SQLException {
+      // Connection con =  DBManager.getConnection();
+
+        return new UserMapper().login().toString();
     }
 
 

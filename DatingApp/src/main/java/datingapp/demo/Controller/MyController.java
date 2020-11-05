@@ -1,12 +1,13 @@
 package datingapp.demo.Controller;
 
 
+import datingapp.demo.Data.UserMapper;
 import datingapp.demo.LoginForm.LoginForm;
+import datingapp.demo.domain.LoginSampleException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @Controller
@@ -35,16 +36,16 @@ public class MyController {
     }
 
 
-    /*
+
     @GetMapping("/test")
     @ResponseBody
-    public String test() throws SQLException {
+    public String test() throws SQLException, LoginSampleException {
       // Connection con =  DBManager.getConnection();
 
-        return new UserMapper().login().toString();
+        return new UserMapper().login("test1" , "test").toString();
     }
 
-     */
+
 
 
 }

@@ -1,40 +1,41 @@
 package datingapp.demo.Controller;
 
 
+import datingapp.demo.Data.DataFacadeImpl;
 import datingapp.demo.Data.UserMapper;
-import datingapp.demo.LoginForm.LoginForm;
+import datingapp.demo.domain.LoginController;
 import datingapp.demo.domain.LoginSampleException;
+import datingapp.demo.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.sql.SQLException;
 
 @Controller
 public class MyController {
-    JDBCWriter jdbcWriter = new JDBCWriter();
+
+    private LoginController loginController = new LoginController(new DataFacadeImpl());
 
     @GetMapping("/")
-    public String welcome(Model model) {
-        model.addAttribute("Connect", jdbcWriter.setConnection());
-        return "login";
+    public String getHome() {
+        return "index";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLoginForm() {
-        return "login";
+    @PostMapping("/login")
+    public String loginUser(WebRequest request) throws LoginSampleException {
+        //Retrieve values from HTML form via WebRequest
+        String email = request.getParameter("email");
+        String pwd = request.getParameter("password");
+
+        // delegate work + data to login controller
+        User user = loginController.login(email, pwd);
+        setSessionInfo(request, user);
+
+        // Go to to page dependent on role
+        return "userpages/" + user.isAdmin();
     }
-
-    @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("loginForm") LoginForm loginForm, Model model) {
-        if(loginForm.getUsername().equals("admin")&& loginForm.getPassword().equals("admin")) {
-            return "home";
-        }
-        model.addAttribute("invalidCredentials", true);
-
-        return "login";
-    }
-
 
 
     @GetMapping("/test")
@@ -45,6 +46,18 @@ public class MyController {
         return new UserMapper().login("test1" , "test").toString();
     }
 
+
+    private void setSessionInfo(WebRequest request, User user) {
+        // Place user info on session
+        request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
+        request.setAttribute("role", user.isAdmin(), WebRequest.SCOPE_SESSION);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String anotherError(Model model, Exception exception) {
+        model.addAttribute("message",exception.getMessage());
+        return "exceptionPage";
+    }
 
 
 

@@ -14,6 +14,7 @@ public class DBManager {
     private static String url;
     private static Connection connection = null;
 
+
     public static Connection getConnection(){
         if (connection != null) return connection;
         try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {

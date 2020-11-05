@@ -25,7 +25,33 @@ public class UserMapper {
 
      */
 
+<<<<<<< HEAD
     // Retunere den første user den finder med firstname og Zipcode.
+=======
+    public User login(String email, String password) throws LoginSampleException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT id, role FROM Users "
+                    + "WHERE email=? AND password=?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String role = rs.getString("role");
+                int id = rs.getInt("id");
+                User user = new User(email, password, role);
+                user.setId(id);
+                return user;
+            } else {
+                throw new LoginSampleException("Could not validate user");
+            }
+        } catch (SQLException | LoginSampleException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    /*
+
+>>>>>>> 649cdb20608deb3fd733065d7b1337dc4e604ce8
     public User login() {
         User user = null;
         try {
@@ -46,5 +72,7 @@ public class UserMapper {
         }
         return user;
     }
+
+     */
 
 }

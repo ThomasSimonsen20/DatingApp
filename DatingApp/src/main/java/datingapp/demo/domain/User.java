@@ -3,17 +3,17 @@ package datingapp.demo.domain;
 public class User {
     private int id;
     private String firstName;
-    private String surName;
+    private String lastName;
     private int telephoneNumber;
     private String email;
     private String password;
     private boolean isAdmin;
 
 
-    public User(int id, String firstName, String surName, int telephoneNumber, String email, String password, boolean isAdmin) {
+    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin) {
         this.id = id;
         this.firstName = firstName;
-        this.surName = surName;
+        this.lastName = lastName;
         this.telephoneNumber = telephoneNumber;
         this.email = email;
         this.password = password;
@@ -27,6 +27,10 @@ public class User {
 
     }
 
+    public User() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -35,8 +39,8 @@ public class User {
         return firstName;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getlastName() {
+        return lastName;
     }
 
     public int getTelephoneNumber() {
@@ -63,8 +67,8 @@ public class User {
         this.firstName = firstName;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setTelephoneNumber(int telephoneNumber) {
@@ -88,7 +92,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", surName='" + surName + '\'' +
+                ", surName='" + lastName + '\'' +
                 ", telephoneNumber=" + telephoneNumber +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +

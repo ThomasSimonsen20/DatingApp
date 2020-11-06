@@ -17,6 +17,7 @@ import java.sql.SQLException;
 public class MyController {
 
     private LoginController loginController = new LoginController(new DataFacadeImpl());
+    private UserMapper userMapper = new UserMapper();
 
     @GetMapping("/")
     public String getHome() {
@@ -44,7 +45,11 @@ public class MyController {
     public String test() throws SQLException, LoginSampleException {
       // Connection con =  DBManager.getConnection();
 
-        return new UserMapper().login("test1" , "test").toString();
+       //  return new UserMapper().login("test1" , "test").toString();
+
+        return userMapper.getAllUserDataFromDB().toString();
+
+
     }
 
 

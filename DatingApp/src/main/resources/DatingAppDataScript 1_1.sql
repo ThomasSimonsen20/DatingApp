@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.22, for macos10.15 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for macos10.15 (x86_64)
 --
 -- Host: 127.0.0.1    Database: DatingAppData
 -- ------------------------------------------------------
--- Server version	8.0.22
+-- Server version	8.0.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,6 +30,8 @@ CREATE TABLE `Users` (
   `Email` varchar(100) NOT NULL,
   `Password` varchar(45) NOT NULL,
   `IsAdmin` tinyint NOT NULL DEFAULT '0',
+  `isWoman` tinyint NOT NULL,
+  `Birthday` date NOT NULL DEFAULT (cast(now() as date)),
   PRIMARY KEY (`idUsers`),
   UNIQUE KEY `idUsers_UNIQUE` (`idUsers`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -41,7 +43,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (7,'Hanne','Jensen',12345678,'test1','test',1),(8,'Suzi','Nielsen',87654321,'test2','test',0),(9,'Jørgen','Thomsen',22445341,'test3','test',0),(10,'Ejnar','Madsen',76587351,'test4','test',0);
+INSERT INTO `Users` VALUES (1,'Hanne','Jensen',12345678,'test1','test',1,1,'2020-11-06'),(2,'Suzi','Nielsen',87654321,'test2','test',0,0,'2020-11-06'),(3,'Jørgen','Thomsen',22445341,'test3','test',0,0,'2020-11-06'),(4,'Ejnar','Madsen',76587351,'test4','test',0,0,'2020-11-06');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-06 10:14:10
+-- Dump completed on 2020-11-06 13:54:04

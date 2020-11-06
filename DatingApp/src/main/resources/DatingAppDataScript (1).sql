@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `datingappdata` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `datingappdata`;
--- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.22, for macos10.15 (x86_64)
 --
--- Host: 127.0.0.1    Database: datingappdata
+-- Host: 127.0.0.1    Database: DatingAppData
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,13 +16,13 @@ USE `datingappdata`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table ` users`
+-- Table structure for table `Users`
 --
 
-DROP TABLE IF EXISTS ` users`;
+DROP TABLE IF EXISTS `Users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE ` users` (
+CREATE TABLE `Users` (
   `idUsers` int NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(45) NOT NULL,
   `LastName` varchar(150) NOT NULL,
@@ -34,18 +32,22 @@ CREATE TABLE ` users` (
   `IsAdmin` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`idUsers`),
   UNIQUE KEY `idUsers_UNIQUE` (`idUsers`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table ` users`
+-- Dumping data for table `Users`
 --
 
-LOCK TABLES ` users` WRITE;
-/*!40000 ALTER TABLE ` users` DISABLE KEYS */;
-INSERT INTO ` users` VALUES (9,'Hanne','Jensen',12345678,'test1','test',1),(10,'Suzi','Nielsen',87654321,'test2','test',0),(11,'Jørgen','Thomsen',22445341,'test3','test',0),(12,'Ejnar','Madsen',76587351,'test3','test',0);
-/*!40000 ALTER TABLE ` users` ENABLE KEYS */;
+LOCK TABLES `Users` WRITE;
+/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` VALUES (7,'Hanne','Jensen',12345678,'test1','test',1),(8,'Suzi','Nielsen',87654321,'test2','test',0),(9,'Jørgen','Thomsen',22445341,'test3','test',0),(10,'Ejnar','Madsen',76587351,'test4','test',0);
+/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'DatingAppData'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -56,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-05 15:28:48
+-- Dump completed on 2020-11-06 10:14:10

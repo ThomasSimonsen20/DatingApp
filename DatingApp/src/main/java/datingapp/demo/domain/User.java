@@ -20,10 +20,11 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    public User(String email, String password, boolean isAdmin) {
+    public User(String email, String password, Boolean isAdmin) {
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
+
     }
 
     public int getId() {

@@ -1,5 +1,9 @@
 package datingapp.demo.domain;
 
+import datingapp.demo.Data.UserMapper;
+
+import java.util.ArrayList;
+
 public class LoginController {
 
     // facade to datasource layer
@@ -18,5 +22,10 @@ public class LoginController {
         User user = new User(email, password, true);
         facade.createUser(user);
         return user;
+    }
+
+    public ArrayList<User> getAllUserDataFromDB() {
+
+        return facade.getAllUserDataFromDB();
     }
 }

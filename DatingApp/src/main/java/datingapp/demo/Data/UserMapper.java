@@ -10,15 +10,20 @@ import java.util.ArrayList;
 public class UserMapper {
 
 
+
     public User login(String email, String password) throws LoginSampleException {
         try {
+            // Opretter forbindelse til vores database via vores DB Manager klasse
             Connection con = DBManager.getConnection();
             String SQL = "SELECT idUsers, IsAdmin FROM users "
                     + "WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
+
+            // Kigger på om der er en email og password der passer på det brugeren har indtastet.
             ps.setString(1, email);
             ps.setString(2, password);
 
+            // Laver et resultset med email og password.
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Boolean isAdmin = rs.getBoolean("IsAdmin");
@@ -33,6 +38,10 @@ public class UserMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
+
+    // Opretter brugerne ved at sætte deres variabler med data fra MySQL
+    // Gemmer alle brugere fra vores SQL database i en Arraylist
 
     public ArrayList<User> getAllUserDataFromDB() {
         ArrayList<User> userArrayList = new ArrayList<>();

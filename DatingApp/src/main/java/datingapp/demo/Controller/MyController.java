@@ -25,7 +25,7 @@ public class MyController {
     }
 
     @PostMapping("/login")
-    public String loginUser(WebRequest request) throws LoginSampleException {
+    public String loginUser(WebRequest request, Model model) throws LoginSampleException {
         //Retrieve values from HTML form via WebRequest
         String email = request.getParameter("email");
         String pwd = request.getParameter("password");
@@ -33,6 +33,8 @@ public class MyController {
         // delegate work + data to login controller
         User user = loginController.login(email, pwd);
         setSessionInfo(request, user);
+
+        model.addAttribute("users", loginController.getAllUserDataFromDB());
 
         // Go to to page dependent on role
         //return "home" + user.isAdmin();

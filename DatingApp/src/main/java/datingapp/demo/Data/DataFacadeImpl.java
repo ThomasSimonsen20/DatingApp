@@ -21,7 +21,7 @@ public class DataFacadeImpl implements DataFacade {
 
     @Override
     public ArrayList<User> getAllUserDataFromDB() {
-        return null;
+        return userMapper.getAllUserDataFromDB();
     }
 
 

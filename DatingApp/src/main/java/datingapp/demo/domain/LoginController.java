@@ -25,7 +25,6 @@ public class LoginController {
     }
 
     public ArrayList<User> getAllUserDataFromDB() {
-
         return facade.getAllUserDataFromDB();
     }
 }

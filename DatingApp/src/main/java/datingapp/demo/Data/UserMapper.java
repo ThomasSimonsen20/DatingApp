@@ -67,14 +67,17 @@ public class UserMapper {
 
             }
 
-
-
-
         } catch (SQLException e) {
             e.getMessage();
         }
 
         return userArrayList;
     }
+
+
+
+
+
+
 
 }

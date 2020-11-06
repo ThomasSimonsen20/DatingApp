@@ -18,7 +18,7 @@ public class UserMapper {
             String SQL = "SELECT idUsers, IsAdmin FROM users "
                     + "WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
-
+            // linje 26
             // Kigger på om der er en email og password der passer på det brugeren har indtastet.
             ps.setString(1, email);
             ps.setString(2, password);

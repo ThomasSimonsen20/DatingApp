@@ -33,8 +33,10 @@ public class MyController {
         // delegate work + data to login controller
         User user = loginController.login(email, pwd);
         setSessionInfo(request, user);
+        
 
-        model.addAttribute("users", loginController.getAllUserDataFromDB());
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+
 
         // Go to to page dependent on role
         //return "home" + user.isAdmin();

@@ -10,15 +10,6 @@
 <h1>Kan Logge Ind</h1>
 
 
-<div class="row">
-    <div th:each="user : ${User}">
-        <div class="column" th:with="picUrl=${user.getId()} + '.jpg'">
-            <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%">
-            <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
-        </div>
-    </div>
-</div>
-
 
 <!-- Her laver vi 4 variabler, 1 for hver bruger vi vil vise på siden -->
 
@@ -50,7 +41,18 @@
 </div>
 
 
+<!--
 
+<div class="row">
+    <div th:each="user : ${User}">
+        <div class="column" th:with="picUrl=${user.getId()} + '.jpg'">
+            <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%">
+            <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
+        </div>
+    </div>
+</div>
+
+-->
 <!--
  <table>
      <thead>

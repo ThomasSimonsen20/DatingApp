@@ -11,21 +11,13 @@
 
 
 
-<!-- Her laver vi 4 variabler, 1 for hver bruger vi vil vise på siden -->
+<!--
 
 <div class="row" th:with="firstUser=${User.get(0)}, secondUser=${User.get(1)},thirdUser=${User.get(2)},fourthUser=${User.get(3)}">
-
-    <!-- Her laver vi en String som vi kalder picUrl og som består af brugerens ID + endelsen ".jpg". -->
     <div class="column" th:with="picUrl=${firstUser.getId()} + '.jpg'">
-
-        <!-- Her indsætter vi billedet ved hjælp af Strengen picUrl -->
         <img th:src="@{/images/{image}(image=${picUrl})}" alt="Picture" style="width:100%">
-
-        <!-- Her står teksten som kommer under billedet.  -->
         <p th:utext="${firstUser.getFirstName()} + ', ' + ${firstUser.calculateAge()}"> NAME & AGE  </p>
     </div>
-
-    <!-- Og så gør vi det samme for den næste bruger... -->
     <div class="column" th:with="picUrl=${secondUser.getId()} + '.jpg'">
         <img th:src="@{/images/{image}(image=${picUrl})}" alt="Picture" style="width:100%">
         <p th:utext="${secondUser.getFirstName()} + ', ' + ${secondUser.calculateAge()}"> NAME & AGE  </p>
@@ -40,8 +32,9 @@
     </div>
 </div>
 
+-->
 
-<!--
+
 
 <div class="row">
     <div th:each="user : ${User}">
@@ -52,7 +45,8 @@
     </div>
 </div>
 
--->
+-
+
 <!--
  <table>
      <thead>

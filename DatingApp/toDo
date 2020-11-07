@@ -17,3 +17,6 @@ Klik herefter på "Start Export"
 7. Finde ud af hvordan vi udskriver de rigtige navne på brugerne, under billederne på home.html. TJEK
 
 8. Rette billederne så de er lige høje når de bliver vist på home.html. Tænker det er noget med at skære af top OG bund så man ikke skærer folks ansigter midt over.
+
+9: Noget jeg synes ville være sjovt at have med, er at lave en metode et eller andet som som genererede 4 tilfældige tal fra 0-Database.size() og på den måde vise 4 tilfældige brugere på forsiden.
+   Det skal selvfølgelig også kønsopdeles, så kvindelige brugere ser 4 tilfældige mænd og omvendt..

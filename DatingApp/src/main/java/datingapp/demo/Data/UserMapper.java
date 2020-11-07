@@ -64,6 +64,7 @@ public class UserMapper {
                 user.setAdmin(rs.getBoolean("IsAdmin"));
                 user.setWoman(rs.getBoolean("isWoman"));
                 user.setBirthday(rs.getString("Birthday"));
+                user.setPictureName(rs.getString("PictureName"));
 
                 userArrayList.add(user);
 

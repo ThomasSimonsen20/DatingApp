@@ -13,9 +13,10 @@ public class User {
     private boolean isAdmin;
     private boolean isWoman;
     private LocalDate birthday;
+    private String pictureName;
 
 
-    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, LocalDate birthday) {
+    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, LocalDate birthday, String pictureName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,6 +26,7 @@ public class User {
         this.isAdmin = isAdmin;
         this.isWoman = isWoman;
         this.birthday = birthday;
+        this.pictureName = pictureName;
     }
 
     public User(String email, String password, Boolean isAdmin) {
@@ -43,6 +45,15 @@ public class User {
     public String calculateAge(){
         LocalDate todaysDate = LocalDate.now();
         return String.valueOf(Period.between(birthday, todaysDate).getYears());
+    }
+
+
+    public String getPictureName() {
+        return pictureName;
+    }
+
+    public void setPictureName(String pictureName) {
+        this.pictureName = pictureName;
     }
 
     public int getId() {

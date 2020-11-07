@@ -1,4 +1,4 @@
-1<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -29,8 +29,13 @@
 </div>
 
 
-<div th:each="user : ${User}">
-<h3 th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </h3>
+<div th:each="user : ${User}" class="row">
+    <div class="column">
+       <img th:src="@{/images/{image}(image=${user.getPictureName()})}" style="width: 100%">
+        <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
+
+
+
 </div>
 
 <table>

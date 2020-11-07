@@ -43,7 +43,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'Hanne','Jensen',12345678,'test1','test',1,1,'2000-11-06'),(2,'Suzi','Nielsen',87654321,'test2','test',0,0,'2001-09-06'),(3,'Jørgen','Thomsen',22445341,'test3','test',0,0,'1967-03-04'),(4,'Ejnar','Madsen',76587351,'test4','test',0,0,'1930-10-05');
+INSERT INTO `Users` VALUES (1,'Hanne','Jensen',12345678,'test1','test',1,1,'2000-11-06'),(2,'Suzi','Nielsen',87654321,'test2','test',0,1,'2001-09-06'),(3,'Jørgen','Thomsen',22445341,'test3','test',0,0,'1967-03-04'),(4,'Ejnar','Madsen',76587351,'test4','test',0,0,'1930-10-05');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 

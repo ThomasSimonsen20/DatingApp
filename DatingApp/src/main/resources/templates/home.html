@@ -33,7 +33,7 @@
     <div class="column">
        <img th:src="@{/images/{image}(image=${user.getPictureName()})}" style="width: 100%">
         <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
-
+    </div>
 
 
 </div>

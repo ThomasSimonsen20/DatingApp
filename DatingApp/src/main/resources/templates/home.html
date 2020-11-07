@@ -9,40 +9,50 @@
 
 <h1>Kan Logge Ind</h1>
 
-<div class="row">
-    <div class="column">
-        <img src="images/woman.jpg" alt="Woman" style="width:100%">
-        <p>Test</p>
+<!-- Her laver vi 4 variabler, 1 for hver bruger vi vil vise på siden -->
+<div class="row" th:with="firstUser=${User.get(0)}, secondUser=${User.get(1)},thirdUser=${User.get(2)},fourthUser=${User.get(3)}">
+
+    <!-- Her laver vi en String som vi kalder picUrl og som består af brugerens ID + endelsen ".jpg". -->
+    <div class="column" th:with="picUrl=${firstUser.getId()} + '.jpg'">
+
+        <!-- Her indsætter vi billedet ved hjælp af Strengen picUrl -->
+        <img th:src="@{/images/{image}(image=${picUrl})}" alt="Picture" style="width:100%">
+
+        <!-- Her står teksten som kommer under billedet.  -->
+        <p th:utext="${firstUser.getFirstName()} + ', ' + ${firstUser.calculateAge()}"> NAME & AGE  </p>
     </div>
-    <div class="column">
-        <img src="images/woman.jpg" alt="Woman" style="width:100%">
-        <p>Test</p>
+
+    <!-- Og så gør vi det samme for den næste bruger... -->
+    <div class="column" th:with="picUrl=${secondUser.getId()} + '.jpg'">
+        <img th:src="@{/images/{image}(image=${picUrl})}" alt="Picture" style="width:100%">
+        <p th:utext="${secondUser.getFirstName()} + ', ' + ${secondUser.calculateAge()}"> NAME & AGE  </p>
     </div>
-    <div class="column">
-        <img src="images/woman.jpg" alt="Woman" style="width:100%">
-        <p>Test</p>
+    <div class="column" th:with="picUrl=${thirdUser.getId()} + '.jpg'">
+        <img th:src="@{/images/{image}(image=${picUrl})}" alt="Picture" style="width:100%">
+        <p th:utext="${thirdUser.getFirstName()} + ', ' + ${thirdUser.calculateAge()}"> NAME & AGE  </p>
     </div>
-    <div class="column">
-        <img src="images/woman.jpg" alt="Woman" style="width:100%">
-        <p>Test</p>
+    <div class="column" th:with="picUrl=${fourthUser.getId()} + '.jpg'">
+        <img th:src="@{/images/{image}(image=${picUrl})}" alt="Picture" style="width:100%">
+        <p th:utext="${fourthUser.getFirstName()} + ', ' + ${fourthUser.calculateAge()}"> NAME & AGE  </p>
     </div>
 </div>
 
-
-<div th:each="user : ${User}" class="row">
+<!--
+<div th:each="user : ${User}" th:with="picUrl=${user.getId()} + '.jpg'" class="row">
     <div class="column">
-       <img th:src="@{/images/{image}(image=${user.getPictureName()})}" style="width: 100%">
-        <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
-    </div>
+       <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%">
+         <img th:src="@{/images/{image}(image=${user.getPictureName()})}" style="width: 100%">
+         <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
+     </div>
 
 
-</div>
+ </div>
 
-<table>
-    <thead>
-    <tr th:each="user : ${User}">
-        <!-- <td><span th:text="${user.getFirstName()} + ', '"> FIRSTNAME</span>  </td> -->
-        <!-- <td><span th:text="${user.calculateAge()}"> AGE</span>  </td> -->
+ <table>
+     <thead>
+     <tr th:each="user : ${User}">
+         <td><span th:text="${user.getFirstName()} + ', '"> FIRSTNAME</span>  </td>
+        <td><span th:text="${user.calculateAge()}"> AGE</span>  </td>
 
 
 
@@ -52,6 +62,8 @@
 
     </thead>
 </table>
+
+-->
 
 <!--<p th:text="${users}"></p> -->
 

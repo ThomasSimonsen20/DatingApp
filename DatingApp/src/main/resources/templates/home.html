@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+1<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -18,11 +18,18 @@
     </div>
 </div>
 
+<div th:each="user : ${User}">
+<p th:utext="${user.getFirstName()} + ', '"> FIRSTNAME </p>
+<p th:utext="${user.calculateAge()}"> AGE</p>
+</div>
 
 <table>
     <thead>
     <tr th:each="user : ${User}">
-        <td><span th:text="${user.getFirstName()}"> FIRSTNAME</span> </td>
+        <!-- <td><span th:text="${user.getFirstName()} + ', '"> FIRSTNAME</span>  </td> -->
+        <!-- <td><span th:text="${user.calculateAge()}"> AGE</span>  </td> -->
+
+
 
     </tr>
 

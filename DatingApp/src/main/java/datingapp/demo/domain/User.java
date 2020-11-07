@@ -1,5 +1,8 @@
 package datingapp.demo.domain;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class User {
     private int id;
     private String firstName;
@@ -8,9 +11,11 @@ public class User {
     private String email;
     private String password;
     private boolean isAdmin;
+    private boolean isWoman;
+    private LocalDate birthday;
 
 
-    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin) {
+    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, LocalDate birthday) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,6 +23,8 @@ public class User {
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.isWoman = isWoman;
+        this.birthday = birthday;
     }
 
     public User(String email, String password, Boolean isAdmin) {
@@ -29,6 +36,13 @@ public class User {
 
     public User() {
 
+    }
+
+
+
+    public String calculateAge(){
+        LocalDate todaysDate = LocalDate.now();
+        return String.valueOf(Period.between(birthday, todaysDate).getYears());
     }
 
     public int getId() {
@@ -86,6 +100,20 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
+    public void setWoman(boolean woman) {
+        isWoman = woman;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = LocalDate.parse(birthday);
+    }
+
+
 
     @Override
     public String toString() {

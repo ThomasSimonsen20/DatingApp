@@ -62,6 +62,8 @@ public class UserMapper {
                 user.setEmail(rs.getString("Email"));
                 user.setPassword(rs.getString("Password"));
                 user.setAdmin(rs.getBoolean("IsAdmin"));
+                user.setWoman(rs.getBoolean("isWoman"));
+                user.setBirthday(rs.getString("Birthday"));
 
                 userArrayList.add(user);
 

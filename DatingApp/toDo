@@ -1,6 +1,6 @@
-1. Opret i MYSQL en fane hedder M/K er det mand eller kvinde
-2. Opret i MySQL Alder DATE object.
-3. Generer ny SQL Script og lig det ind i Projekt
+1. Opret i MYSQL en fane hedder M/K er det mand eller kvinde. TJEK. Den er dog kommet til at være en bool som hedder isWoman så vi nemmere kan lave checks på den.
+2. Opret i MySQL Alder DATE object. TJEK. Er dog oprettet som birthday så vi ikke skal rette i data hver gang en bruger har rødselsdag.
+3. Generer ny SQL Script og lig det ind i Projekt. TJEK. Nyeste version: 1_1
 
 // Guide:
 MySQL -> Fanen Server -> DataExport

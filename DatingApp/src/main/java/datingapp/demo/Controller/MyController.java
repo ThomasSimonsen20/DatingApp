@@ -10,6 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import org.thymeleaf.spring5.ISpringTemplateEngine;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import java.sql.SQLException;
 
@@ -18,6 +22,17 @@ public class MyController {
 
     private LoginController loginController = new LoginController(new DataFacadeImpl());
     private UserMapper userMapper = new UserMapper();
+
+    // Konfigurerer Thymeleaf engine til at bruge Java8TimeDialect
+    // Se https://www.baeldung.com/dates-in-thymeleaf punkt 3.
+    /*
+    private ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
+        SpringTemplateEngine engine = new SpringTemplateEngine();
+        engine.addDialect(new Java8TimeDialect());
+        engine.setTemplateResolver(templateResolver);
+        return engine;
+    }
+     */
 
     @GetMapping("/")
     public String getHome() {
@@ -36,6 +51,7 @@ public class MyController {
         
 
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+
 
 
         // Go to to page dependent on role

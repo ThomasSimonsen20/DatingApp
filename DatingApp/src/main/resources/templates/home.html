@@ -12,21 +12,25 @@
 <div class="row">
     <div class="column">
         <img src="images/woman.jpg" alt="Woman" style="width:100%">
+        <p>Test</p>
     </div>
     <div class="column">
         <img src="images/woman.jpg" alt="Woman" style="width:100%">
+        <p>Test</p>
     </div>
     <div class="column">
         <img src="images/woman.jpg" alt="Woman" style="width:100%">
+        <p>Test</p>
     </div>
     <div class="column">
         <img src="images/woman.jpg" alt="Woman" style="width:100%">
+        <p>Test</p>
     </div>
 </div>
 
 
 <div th:each="user : ${User}">
-<p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
+<h3 th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </h3>
 </div>
 
 <table>

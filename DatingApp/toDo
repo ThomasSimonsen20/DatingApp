@@ -10,6 +10,9 @@ vælg export to self contained file og lig filen hvor du ønsker.
 Klik herefter på "Start Export"
 
 
-4. Brug thymeleaf til at parse data (Date objekt) til home.html.
+4. Brug thymeleaf til at parse data (Date objekt) til home.html. TJEK. Tror jeg..? Har i hvert fald fået siden til at display'e alder, baseret på attributten birthday i klassen User.
 5. Tilføj billede af mand til test.
 6. Redirect bruger alt efter om de er kvinde eller mand.
+
+7. Finde ud af hvordan vi udskriver de rigtige navne på brugerne, under billederne på home.html.
+- Jeg har skrevet et Test-navn under hvert billede, så navnet liner op med billedet

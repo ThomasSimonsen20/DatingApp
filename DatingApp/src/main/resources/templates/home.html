@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="home.css">
+    <link th:href="@{/styles/home.css}" rel="stylesheet">
 </head>
 <body>
 
-<h1>KAN LOGGE IND</h1>
+<h1>Kan Logge Ind</h1>
 
 <div class="row">
     <div class="column">
-        <img src="images/woman.jpg">
-        <img src="images/woman.jpg">
-        <img src="images/woman.jpg">
-        <img src="images/woman.jpg">
+        <img src="images/woman.jpg" alt="Woman" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="images/woman.jpg" alt="Woman" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="images/woman.jpg" alt="Woman" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="images/woman.jpg" alt="Woman" style="width:100%">
     </div>
 </div>
+
 
 <div th:each="user : ${User}">
 <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>

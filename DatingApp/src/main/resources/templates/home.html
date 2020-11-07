@@ -19,8 +19,7 @@
 </div>
 
 <div th:each="user : ${User}">
-<p th:utext="${user.getFirstName()} + ', '"> FIRSTNAME </p>
-<p th:utext="${user.calculateAge()}"> AGE</p>
+<p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
 </div>
 
 <table>

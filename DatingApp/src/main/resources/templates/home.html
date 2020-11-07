@@ -9,7 +9,19 @@
 
 <h1>Kan Logge Ind</h1>
 
+
+<div class="row">
+    <div th:each="user : ${User}">
+        <div class="column" th:with="picUrl=${user.getId()} + '.jpg'">
+            <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%">
+            <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
+        </div>
+    </div>
+</div>
+
+
 <!-- Her laver vi 4 variabler, 1 for hver bruger vi vil vise på siden -->
+
 <div class="row" th:with="firstUser=${User.get(0)}, secondUser=${User.get(1)},thirdUser=${User.get(2)},fourthUser=${User.get(3)}">
 
     <!-- Her laver vi en String som vi kalder picUrl og som består af brugerens ID + endelsen ".jpg". -->
@@ -37,17 +49,9 @@
     </div>
 </div>
 
+
+
 <!--
-<div th:each="user : ${User}" th:with="picUrl=${user.getId()} + '.jpg'" class="row">
-    <div class="column">
-       <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%">
-         <img th:src="@{/images/{image}(image=${user.getPictureName()})}" style="width: 100%">
-         <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
-     </div>
-
-
- </div>
-
  <table>
      <thead>
      <tr th:each="user : ${User}">

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/styles/home.css}" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="row">
+    <div th:each="user : ${User}">
+        <div th:if="${!user.isWoman()}">
+            <div class="column" th:with="picUrl=${user.getId()} + '.jpg'">
+                <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%">
+                <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

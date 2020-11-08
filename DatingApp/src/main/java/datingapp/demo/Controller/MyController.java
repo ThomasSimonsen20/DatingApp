@@ -10,10 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
-import org.thymeleaf.spring5.ISpringTemplateEngine;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import java.sql.SQLException;
 
@@ -48,15 +44,19 @@ public class MyController {
         // delegate work + data to login controller
         User user = loginController.login(email, pwd);
         setSessionInfo(request, user);
-        
 
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("User", loginController.getAllUserDataFromDB());
 
+        if(user.isWoman()) {
+            return "femaleFrontPage";
+        }
 
+        if (user.isAdmin()) {
+            return "adminPage";
+        }
 
-        // Go to to page dependent on role
-        //return "home" + user.isAdmin();
-        return "home";
+        return "maleFrontPage";
+
     }
 
 

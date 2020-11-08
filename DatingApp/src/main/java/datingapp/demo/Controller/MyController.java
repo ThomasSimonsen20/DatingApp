@@ -66,6 +66,20 @@ public class MyController {
         }
     }
 
+    //Skulle gerne kunn give info som kan ændres i databasen.
+    @GetMapping("/settings")
+    public String settings(WebRequest request) {
+
+        User user =(User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
+
+
+        // If user object is found on session, i.e. user is logged in, she/he can see secretstuff page
+        if (user != null) {
+            return "settings";
+        }
+        else
+            return "redirect:/";
+    }
 
     @GetMapping("/test")
     @ResponseBody

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+
+<!-- den viser brugeren selvom user lyser rødt, ved ikk hvorfor :/ -->
+<p th:text="${session.user}" th:unless="${session == null}">[...]</p>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

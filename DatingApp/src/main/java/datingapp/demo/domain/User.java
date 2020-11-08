@@ -47,9 +47,7 @@ public class User {
         return String.valueOf(Period.between(birthday, todaysDate).getYears());
     }
 
-    public boolean isWoman() {
-        return isWoman;
-    }
+
 
     public String getPictureName() {
         return pictureName;

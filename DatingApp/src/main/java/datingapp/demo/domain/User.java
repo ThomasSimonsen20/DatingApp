@@ -87,6 +87,10 @@ public class User {
         return isAdmin;
     }
 
+    public boolean isWoman() {
+        return isWoman;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

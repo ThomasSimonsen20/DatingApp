@@ -53,10 +53,17 @@ public class MyController {
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
 
 
+        if (user.isAdmin()){
+            return "homeA";
+        }
 
-        // Go to to page dependent on role
-        //return "home" + user.isAdmin();
-        return "home";
+        //Virker ikke. Logger kun mænd ind
+        if (user.isWoman()){
+            return "homeW";
+        }
+        else {
+            return "homeM";
+        }
     }
 
 

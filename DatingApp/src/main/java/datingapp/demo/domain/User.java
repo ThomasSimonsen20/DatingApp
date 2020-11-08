@@ -29,10 +29,11 @@ public class User {
         this.pictureName = pictureName;
     }
 
-    public User(String email, String password, Boolean isAdmin) {
+    public User(String email, String password, Boolean isAdmin, Boolean isWoman) {
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.isWoman = isWoman;
 
     }
 

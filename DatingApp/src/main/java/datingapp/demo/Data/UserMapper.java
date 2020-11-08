@@ -15,7 +15,7 @@ public class UserMapper {
         try {
             // Opretter forbindelse til vores database via vores DB Manager klasse
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT idUsers, IsAdmin FROM users "
+            String SQL = "SELECT idUsers, IsAdmin, isWoman FROM users "
                     + "WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
             // linje 26
@@ -27,8 +27,9 @@ public class UserMapper {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Boolean isAdmin = rs.getBoolean("IsAdmin");
+                Boolean isWoman = rs.getBoolean("isWoman");
                 int id = rs.getInt("idUsers");
-                User user = new User(email, password, isAdmin);
+                User user = new User(email, password, isAdmin, isWoman);
                 user.setId(id);
                 return user;
             } else {

@@ -6,6 +6,7 @@ import datingapp.demo.Data.UserMapper;
 import datingapp.demo.domain.LoginController;
 import datingapp.demo.domain.LoginSampleException;
 import datingapp.demo.domain.User;
+import datingapp.demo.domain.UserViewerSelector;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class MyController {
 
     private LoginController loginController = new LoginController(new DataFacadeImpl());
     private UserMapper userMapper = new UserMapper();
+    private UserViewerSelector userViewerSelector = new UserViewerSelector();
 
     // Konfigurerer Thymeleaf engine til at bruge Java8TimeDialect
     // Se https://www.baeldung.com/dates-in-thymeleaf punkt 3.
@@ -40,7 +42,7 @@ public class MyController {
     }
 
     @PostMapping("/login")
-    public String loginUser(WebRequest request, Model model) throws LoginSampleException {
+    public String loginUser(WebRequest request, Model model, Model model1) throws LoginSampleException {
         //Retrieve values from HTML form via WebRequest
         String email = request.getParameter("email");
         String pwd = request.getParameter("password");
@@ -51,7 +53,7 @@ public class MyController {
         
 
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
-
+        model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
         if (user.isAdmin()){
             return "homeA";

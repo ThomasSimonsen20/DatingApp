@@ -11,27 +11,31 @@ public class UserViewerSelector {
     private UserMapper userMapper = new UserMapper();
 
 
-    public ArrayList<Integer> userViewSelector(boolean isWoman){
+    public ArrayList<User> userViewSelector(boolean isWoman){
         ArrayList<Integer> selection = new ArrayList<>();
         ArrayList<User> userList;
+        ArrayList<User> resultList = new ArrayList<>();
+        int counter = 0;
         int rand;
-        if (isWoman ) {
-            userList = getArrayListOfWomenInDB();
+        if (isWoman) {
+            userList = getArrayListOfMenInDB();
         }
         else {
-            userList = getArrayListOfMenInDB();
+            userList = getArrayListOfWomenInDB();
         }
 
         for (int i = 0; i < 4 ; i++) {
-            rand = random.nextInt(userList.size()) + 1;
-            if (selection.contains(rand) || userList.get(rand).isWoman() == isWoman){
-                i--;
+            rand = random.nextInt(userList.size()) ;
+            if (!selection.contains(rand) && userList.get(rand).isWoman() != isWoman){
+                selection.add(rand);
+                resultList.add(userList.get(selection.get(counter)));
+                counter++;
             }
             else {
-                selection.add(rand);
+                i--;
             }
         }
-        return selection;
+        return resultList;
     }
 
 

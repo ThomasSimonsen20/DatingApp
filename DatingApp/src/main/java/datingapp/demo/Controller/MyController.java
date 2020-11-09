@@ -70,6 +70,7 @@ public class MyController {
     @PostMapping("/update")
     public String updateUser(WebRequest request) throws LoginSampleException {
         User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
+
         String firstName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
 

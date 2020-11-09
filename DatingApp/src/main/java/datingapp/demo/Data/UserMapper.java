@@ -66,7 +66,7 @@ public class UserMapper {
                 user.setPassword(rs.getString("Password"));
                 user.setAdmin(rs.getBoolean("IsAdmin"));
                 user.setWoman(rs.getBoolean("isWoman"));
-                user.setBirthday(rs.getString("Birthday"));
+                user.setBirthday(rs.getDate("Birthday"));
 
                 userArrayList.add(user);
 
@@ -82,7 +82,7 @@ public class UserMapper {
     public void updateUser(User user) throws LoginSampleException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "REPLACE INTO users (idUsers,FirstName,LastName, TelephoneNumber,Email, Password, IsAdmin, isWoman) VALUES (?,?,?,?,?,?,?,?)";
+            String SQL = "REPLACE INTO users (idUsers,FirstName,LastName, TelephoneNumber,Email, Password, IsAdmin, isWoman, Birthday) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, user.getId());
             ps.setString(2, user.getFirstName());
@@ -92,6 +92,7 @@ public class UserMapper {
             ps.setString(6, user.getPassword());
             ps.setBoolean(7, user.isAdmin());
             ps.setBoolean(8, user.isWoman());
+            ps.setDate(9, user.getBirthday());
             ps.executeUpdate();
         } catch (SQLException ex) {
             throw new LoginSampleException(ex.getMessage());

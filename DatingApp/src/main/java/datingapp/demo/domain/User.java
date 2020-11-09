@@ -13,10 +13,10 @@ public class User {
     private String password;
     private boolean isAdmin;
     private boolean isWoman;
-    private LocalDate birthday;
+    private Date birthday;
 
 
-    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, LocalDate birthday) {
+    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, Date birthday) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,10 +43,19 @@ public class User {
 
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    /*
     public String calculateAge(){
         LocalDate todaysDate = LocalDate.now();
         return String.valueOf(Period.between(birthday, todaysDate).getYears());
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -111,11 +120,11 @@ public class User {
     public void setWoman(boolean woman) {
         isWoman = woman;
     }
-
+/*
     public void setBirthday(String birthday) {
         this.birthday = LocalDate.parse(birthday);
     }
-
+*/
 
     @Override
     public String toString() {

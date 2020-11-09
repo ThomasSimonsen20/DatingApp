@@ -25,16 +25,6 @@ public class MyController {
     private UserMapper userMapper = new UserMapper();
     private UserViewerSelector userViewerSelector = new UserViewerSelector();
 
-    // Konfigurerer Thymeleaf engine til at bruge Java8TimeDialect
-    // Se https://www.baeldung.com/dates-in-thymeleaf punkt 3.
-    /*
-    private ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
-        SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.addDialect(new Java8TimeDialect());
-        engine.setTemplateResolver(templateResolver);
-        return engine;
-    }
-     */
 
     @GetMapping("/")
     public String getHome() {
@@ -50,7 +40,6 @@ public class MyController {
         // delegate work + data to login controller
         User user = loginController.login(email, pwd);
         setSessionInfo(request, user);
-        
 
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
@@ -69,7 +58,7 @@ public class MyController {
 
 
     @PostMapping("/update")
-    public String updateUser(WebRequest request) throws LoginSampleException {
+    public String updateUser(WebRequest request, Model model) throws LoginSampleException {
         User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
 
         String firstName = request.getParameter("firstname");
@@ -79,13 +68,12 @@ public class MyController {
         user.setLastName(lastName);
         loginController.updateUser(user);
 
-        if (user.isWoman()){
-            return "/homeW";
-        }
-        else {
-            return "/homeM";
-        }
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
+
+        return "settings";
     }
+
 
     @RequestMapping("/homeW")
     public String homeW(WebRequest request, Model model) throws LoginSampleException {
@@ -96,6 +84,7 @@ public class MyController {
 
         return "homeW";
     }
+
 
     @RequestMapping("/homeM")
     public String homeM(WebRequest request, Model model) throws LoginSampleException {
@@ -108,13 +97,13 @@ public class MyController {
     }
 
     //Skulle gerne kunn give info som kan ændres i databasen.
-    @GetMapping("/settings")
+    @RequestMapping("/settings")
     public String settings(WebRequest request, Model model) {
 
         User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
-        // If user object is found on session, i.e. user is logged in, she/he can see secretstuff page
         if (user != null) {
             return "settings";
         }
@@ -126,6 +115,7 @@ public class MyController {
         // Place user info on session
         request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
         request.setAttribute("role", user.isAdmin(), WebRequest.SCOPE_SESSION);
+        request.setAttribute("isWoman", user.isWoman(), WebRequest.SCOPE_SESSION);
     }
 
     @ExceptionHandler(Exception.class)

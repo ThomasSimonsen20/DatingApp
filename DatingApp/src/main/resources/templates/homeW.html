@@ -10,6 +10,12 @@
 <h1>Kvinde Logget Ind</h1>
 
 
+<div class="topnav">
+    <a class="active" href="/homeW">Forside</a>
+    <a href="/settings">Settings</a>
+    <a href="/">Logud</a>
+
+</div>
 
 <form name="update" action="/update" method="post">
     Firstname:<br>
@@ -30,27 +36,9 @@
         </div>
 </div>
 </div>
+</div>
 
 
-<!--
- <table>
-     <thead>
-     <tr th:each="user : ${User}">
-         <td><span th:text="${user.getFirstName()} + ', '"> FIRSTNAME</span>  </td>
-        <td><span th:text="${user.calculateAge()}"> AGE</span>  </td>
-
-
-
-    </tr>
-
-
-
-    </thead>
-</table>
-
--->
-
-<!--<p th:text="${users}"></p> -->
 
 </body>
 </html>

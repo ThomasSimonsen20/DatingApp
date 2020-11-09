@@ -67,6 +67,7 @@ public class MyController {
         }
     }
 
+
     @PostMapping("/update")
     public String updateUser(WebRequest request) throws LoginSampleException {
         User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
@@ -79,31 +80,39 @@ public class MyController {
         loginController.updateUser(user);
 
         if (user.isWoman()){
-            return "homeW";
+            return "/homeW";
         }
         else {
-            return "homeM";
+            return "/homeM";
         }
     }
 
-    @GetMapping("/test")
-    @ResponseBody
-    public String test() throws SQLException, LoginSampleException {
-      // Connection con =  DBManager.getConnection();
+    @RequestMapping("/homeW")
+    public String homeW(WebRequest request, Model model) throws LoginSampleException {
+        User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
-       //  return new UserMapper().login("test1" , "test").toString();
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
-        return userMapper.getAllUserDataFromDB().toString();
+        return "homeW";
+    }
 
+    @RequestMapping("/homeM")
+    public String homeM(WebRequest request, Model model) throws LoginSampleException {
+        User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
+
+        return "homeM";
     }
 
     //Skulle gerne kunn give info som kan ændres i databasen.
     @GetMapping("/settings")
-    public String settings(WebRequest request) {
+    public String settings(WebRequest request, Model model) {
 
         User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
-
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
 
         // If user object is found on session, i.e. user is logged in, she/he can see secretstuff page
         if (user != null) {
@@ -123,6 +132,18 @@ public class MyController {
     public String anotherError(Model model, Exception exception) {
         model.addAttribute("message",exception.getMessage());
         return "exceptionPage";
+    }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test() throws SQLException, LoginSampleException {
+        // Connection con =  DBManager.getConnection();
+
+        //  return new UserMapper().login("test1" , "test").toString();
+
+        return userMapper.getAllUserDataFromDB().toString();
+
+
     }
 
 

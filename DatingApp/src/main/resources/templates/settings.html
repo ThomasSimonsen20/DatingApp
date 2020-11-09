@@ -10,11 +10,13 @@
 <body>
 
 <div class="topnav">
-    <a href="/homeM">Forside</a>
+    <a href="/homeW">Forside</a>
     <a class="active" href="/settings">Settings</a>
-    <a href="/homeA">Logud</a>
+    <a href="/">Logud</a>
 
 </div>
+
+
 
 <!-- den viser brugeren selvom user lyser rødt, ved ikk hvorfor :/ -->
 <p th:text="${session.user}" th:unless="${session == null}">[...]</p>

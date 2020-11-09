@@ -2,11 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/styles/home.css}" rel="stylesheet">
     <title>Title</title>
 
 
 </head>
 <body>
+
+<div class="topnav">
+    <a href="/homeM">Forside</a>
+    <a class="active" href="/settings">Settings</a>
+    <a href="/homeA">Logud</a>
+
+</div>
 
 <!-- den viser brugeren selvom user lyser rødt, ved ikk hvorfor :/ -->
 <p th:text="${session.user}" th:unless="${session == null}">[...]</p>

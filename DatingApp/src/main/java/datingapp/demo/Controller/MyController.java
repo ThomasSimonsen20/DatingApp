@@ -59,7 +59,7 @@ public class MyController {
             return "homeA";
         }
 
-        if (user.isWoman()){
+        else if (user.isWoman()){
             return "homeW";
         }
         else {

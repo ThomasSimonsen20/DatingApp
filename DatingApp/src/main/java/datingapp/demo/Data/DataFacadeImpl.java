@@ -24,5 +24,11 @@ public class DataFacadeImpl implements DataFacade {
         return userMapper.getAllUserDataFromDB();
     }
 
+    @Override
+    public User updateUser(User user) throws LoginSampleException {
+        userMapper.updateUser(user);
+        return user;
+    }
+
 
 }

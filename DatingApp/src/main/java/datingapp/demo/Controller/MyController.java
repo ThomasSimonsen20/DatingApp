@@ -42,7 +42,7 @@ public class MyController {
     }
 
     @PostMapping("/login")
-    public String loginUser(WebRequest request, Model model, Model model1) throws LoginSampleException {
+    public String loginUser(WebRequest request, Model model) throws LoginSampleException {
         //Retrieve values from HTML form via WebRequest
         String email = request.getParameter("email");
         String pwd = request.getParameter("password");
@@ -59,7 +59,6 @@ public class MyController {
             return "homeA";
         }
 
-        //Virker ikke. Logger kun mænd ind
         if (user.isWoman()){
             return "homeW";
         }
@@ -68,19 +67,22 @@ public class MyController {
         }
     }
 
-    //Skulle gerne kunn give info som kan ændres i databasen.
-    @GetMapping("/settings")
-    public String settings(WebRequest request) {
+    @PostMapping("/update")
+    public String updateUser(WebRequest request) throws LoginSampleException {
+        User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
+        String firstName = request.getParameter("firstname");
+        String lastName = request.getParameter("lastname");
 
-        User user =(User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        loginController.updateUser(user);
 
-
-        // If user object is found on session, i.e. user is logged in, she/he can see secretstuff page
-        if (user != null) {
-            return "settings";
+        if (user.isWoman()){
+            return "homeW";
         }
-        else
-            return "redirect:/";
+        else {
+            return "homeM";
+        }
     }
 
     @GetMapping("/test")
@@ -95,6 +97,20 @@ public class MyController {
 
     }
 
+    //Skulle gerne kunn give info som kan ændres i databasen.
+    @GetMapping("/settings")
+    public String settings(WebRequest request) {
+
+        User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
+
+
+        // If user object is found on session, i.e. user is logged in, she/he can see secretstuff page
+        if (user != null) {
+            return "settings";
+        }
+        else
+            return "redirect:/";
+    }
 
     private void setSessionInfo(WebRequest request, User user) {
         // Place user info on session

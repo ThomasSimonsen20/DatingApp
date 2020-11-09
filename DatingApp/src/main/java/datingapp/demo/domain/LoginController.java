@@ -27,4 +27,9 @@ public class LoginController {
     public ArrayList<User> getAllUserDataFromDB() {
         return facade.getAllUserDataFromDB();
     }
+
+    public User updateUser(User user) throws LoginSampleException {
+        facade.updateUser(user);
+        return user;
+    }
 }

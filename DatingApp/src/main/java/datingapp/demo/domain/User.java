@@ -1,5 +1,6 @@
 package datingapp.demo.domain;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -13,10 +14,9 @@ public class User {
     private boolean isAdmin;
     private boolean isWoman;
     private LocalDate birthday;
-    private String pictureName;
 
 
-    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, LocalDate birthday, String pictureName) {
+    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, LocalDate birthday) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,10 +26,12 @@ public class User {
         this.isAdmin = isAdmin;
         this.isWoman = isWoman;
         this.birthday = birthday;
-        this.pictureName = pictureName;
     }
 
-    public User(String email, String password, Boolean isAdmin, Boolean isWoman) {
+    public User(String firstName, String lastName, int telephoneNumber, String email, String password, Boolean isAdmin, Boolean isWoman) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.telephoneNumber = telephoneNumber;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
@@ -41,21 +43,9 @@ public class User {
 
     }
 
-
-
     public String calculateAge(){
         LocalDate todaysDate = LocalDate.now();
         return String.valueOf(Period.between(birthday, todaysDate).getYears());
-    }
-
-
-
-    public String getPictureName() {
-        return pictureName;
-    }
-
-    public void setPictureName(String pictureName) {
-        this.pictureName = pictureName;
     }
 
     public int getId() {
@@ -66,7 +56,7 @@ public class User {
         return firstName;
     }
 
-    public String getlastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -122,10 +112,6 @@ public class User {
         isWoman = woman;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
     public void setBirthday(String birthday) {
         this.birthday = LocalDate.parse(birthday);
     }
@@ -143,7 +129,6 @@ public class User {
                 ", isAdmin=" + isAdmin +
                 ", isWoman=" + isWoman +
                 ", birthday=" + birthday +
-                ", pictureName='" + pictureName + '\'' +
                 '}';
     }
 }

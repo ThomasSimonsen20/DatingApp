@@ -1,21 +1,19 @@
 package datingapp.demo.Data;
 
-import com.mysql.cj.protocol.Resultset;
 import datingapp.demo.domain.LoginSampleException;
 import datingapp.demo.domain.User;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UserMapper {
-
-
 
     public User login(String email, String password) throws LoginSampleException {
         try {
             // Opretter forbindelse til vores database via vores DB Manager klasse
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT idUsers, IsAdmin, isWoman FROM users "
+            String SQL = "SELECT idUsers, FirstName, LastName, TelephoneNumber, IsAdmin, isWoman FROM users "
                     + "WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
             // linje 26
@@ -26,10 +24,14 @@ public class UserMapper {
             // Laver et resultset med email og password.
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                int id = rs.getInt("idUsers");
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
+                int telephoneNumber = rs.getInt("TelephoneNumber");
                 Boolean isAdmin = rs.getBoolean("IsAdmin");
                 Boolean isWoman = rs.getBoolean("isWoman");
-                int id = rs.getInt("idUsers");
-                User user = new User(email, password, isAdmin, isWoman);
+
+                User user = new User(firstName, lastName, telephoneNumber, email, password, isAdmin, isWoman);
                 user.setId(id);
                 return user;
             } else {
@@ -65,7 +67,6 @@ public class UserMapper {
                 user.setAdmin(rs.getBoolean("IsAdmin"));
                 user.setWoman(rs.getBoolean("isWoman"));
                 user.setBirthday(rs.getString("Birthday"));
-                user.setPictureName(rs.getString("PictureName"));
 
                 userArrayList.add(user);
 
@@ -78,7 +79,24 @@ public class UserMapper {
         return userArrayList;
     }
 
-
+    public void updateUser(User user) throws LoginSampleException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "REPLACE INTO users (idUsers,FirstName,LastName, TelephoneNumber,Email, Password, IsAdmin, isWoman) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, user.getId());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getLastName());
+            ps.setInt(4, user.getTelephoneNumber());
+            ps.setString(5, user.getEmail());
+            ps.setString(6, user.getPassword());
+            ps.setBoolean(7, user.isAdmin());
+            ps.setBoolean(8, user.isWoman());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
 
 
 

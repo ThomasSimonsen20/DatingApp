@@ -3,10 +3,7 @@ package datingapp.demo.Controller;
 
 import datingapp.demo.Data.DataFacadeImpl;
 import datingapp.demo.Data.UserMapper;
-import datingapp.demo.domain.LoginController;
-import datingapp.demo.domain.LoginSampleException;
-import datingapp.demo.domain.User;
-import datingapp.demo.domain.UserViewerSelector;
+import datingapp.demo.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +17,10 @@ public class MyController {
 
     private LoginController loginController = new LoginController(new DataFacadeImpl());
     private UserViewerSelector userViewerSelector = new UserViewerSelector();
+    private Messages messages = new Messages();
+
+
+
 
 
     @GetMapping("/")
@@ -89,9 +90,14 @@ public class MyController {
 
     @RequestMapping("/homeM")
     public String homeM(WebRequest request, Model model) throws LoginSampleException {
+
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
+        model.addAttribute("Messages", messages);
+
+        String userMessage = request.getParameter("message");
+        messages.addMessageToList(userMessage);
 
         return "homeM";
     }

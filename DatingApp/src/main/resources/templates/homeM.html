@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:fd="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>HomeM</title>
     <link th:href="@{/styles/home.css}" rel="stylesheet">
 </head>
+<style>
+
+</style>
 <body>
 
 
@@ -30,6 +33,48 @@
     </div>
 
 
+
+
+    </thead>
+</table>
+
+
+<!-- LINJEN NEDEUNDER MÅ IKKE SLETTES -->
+<!-- <button class="open-button" onclick="openForm()">Chat</button> -->
+
+<div class="chat-popup" id="myForm">
+
+    <form action="/homeM" class="form-container" method="post">
+        <h2>Message Board</h2>
+
+
+        <div class="message-board">
+            <!-- <div  th:if="${Messages.isEmpty()}"> -->
+            <div class="message-board-log" placeholder="No messages.." th:each="message : ${Messages}">
+                <p class="message-board-log-style" data-th-utext="${#strings.replace(#strings.escapeXml(message),'&#10;','&lt;br&gt;')}"></p>
+            </div>
+            <!-- </div> -->
+            </div>
+
+
+            <label for="msg"><b>Message</b></label>
+            <input class="message-board-input" id="msg" type="text" name="message" placeholder="Type message.." required>
+            <!-- <textarea placeholder="Type message.." name="msg" required></textarea> -->
+
+        <button type="submit" class="btn">Send</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+</div>
+
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>
 
 </body>
 </html>

@@ -11,18 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
-import org.thymeleaf.spring5.ISpringTemplateEngine;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import java.sql.SQLException;
 
 @Controller
 public class MyController {
 
     private LoginController loginController = new LoginController(new DataFacadeImpl());
-    private UserMapper userMapper = new UserMapper();
     private UserViewerSelector userViewerSelector = new UserViewerSelector();
 
 
@@ -33,11 +27,9 @@ public class MyController {
 
     @PostMapping("/login")
     public String loginUser(WebRequest request, Model model) throws LoginSampleException {
-        //Retrieve values from HTML form via WebRequest
         String email = request.getParameter("email");
         String pwd = request.getParameter("password");
 
-        // delegate work + data to login controller
         User user = loginController.login(email, pwd);
         setSessionInfo(request, user);
 
@@ -60,6 +52,8 @@ public class MyController {
     @PostMapping("/update")
     public String updateUser(WebRequest request, Model model) throws LoginSampleException {
         User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
         String firstName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
@@ -68,9 +62,6 @@ public class MyController {
         user.setLastName(lastName);
         loginController.updateUser(user);
 
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
-        model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
-
         return "settings";
     }
 
@@ -78,7 +69,6 @@ public class MyController {
     @RequestMapping("/homeW")
     public String homeW(WebRequest request, Model model) throws LoginSampleException {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
-
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
@@ -89,17 +79,14 @@ public class MyController {
     @RequestMapping("/homeM")
     public String homeM(WebRequest request, Model model) throws LoginSampleException {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
-
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
         return "homeM";
     }
 
-    //Skulle gerne kunn give info som kan ændres i databasen.
     @RequestMapping("/settings")
     public String settings(WebRequest request, Model model) {
-
         User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
@@ -123,19 +110,5 @@ public class MyController {
         model.addAttribute("message",exception.getMessage());
         return "exceptionPage";
     }
-
-    @GetMapping("/test")
-    @ResponseBody
-    public String test() throws SQLException, LoginSampleException {
-        // Connection con =  DBManager.getConnection();
-
-        //  return new UserMapper().login("test1" , "test").toString();
-
-        return userMapper.getAllUserDataFromDB().toString();
-
-
-    }
-
-
 
 }

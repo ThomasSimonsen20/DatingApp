@@ -14,11 +14,6 @@ public class DataFacadeImpl implements DataFacade {
     }
 
 
-    public User createUser(User user) throws LoginSampleException {
-      //  userMapper.createUser(user);
-        return user;
-    }
-
     @Override
     public ArrayList<User> getAllUserDataFromDB() {
         return userMapper.getAllUserDataFromDB();

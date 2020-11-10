@@ -17,12 +17,6 @@ public class LoginController {
         return facade.login(email, password);
     }
 
-    public User createUser(String email, String password) throws LoginSampleException {
-        // By default, new users are customers
-        User user = new User();
-        facade.createUser(user);
-        return user;
-    }
 
     public ArrayList<User> getAllUserDataFromDB() {
         return facade.getAllUserDataFromDB();

@@ -86,10 +86,8 @@ public class MyController {
     }
 
     @RequestMapping("/settings")
-    public String settings(WebRequest request, Model model) {
+    public String settings(WebRequest request) {
         User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
-        model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
         if (user != null) {
             return "settings";

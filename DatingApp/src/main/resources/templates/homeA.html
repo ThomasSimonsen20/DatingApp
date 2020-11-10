@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
+    <link th:href="@{/styles/home.css}" rel="stylesheet">
 </head>
 <body>
 
 <h1>Admin er Logged in</h1>
+
+<div class="topnav">
+    <a href="/">Logud</a>
+</div>
 
 <form name="delete" action="/homeA" method="post">
     Type ID to delete user:<br>

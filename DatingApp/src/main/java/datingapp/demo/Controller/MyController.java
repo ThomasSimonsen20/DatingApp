@@ -53,10 +53,11 @@ public class MyController {
     @PostMapping("/homeA")
     public String homeA(WebRequest request, Model model) throws LoginSampleException {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
 
         int id = Integer.parseInt(Objects.requireNonNull(request.getParameter("id")));
         loginController.deleteUser(id);
+
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
 
         return "homeA";
     }

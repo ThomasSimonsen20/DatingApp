@@ -17,7 +17,6 @@ public class LoginController {
         return facade.login(email, password);
     }
 
-
     public ArrayList<User> getAllUserDataFromDB() {
         return facade.getAllUserDataFromDB();
     }
@@ -25,5 +24,10 @@ public class LoginController {
     public User updateUser(User user) throws LoginSampleException {
         facade.updateUser(user);
         return user;
+    }
+
+    public int deleteUser(int id) throws LoginSampleException {
+        facade.deleteUser(id);
+        return id;
     }
 }

@@ -13,7 +13,6 @@ public class DataFacadeImpl implements DataFacade {
         return userMapper.login(email, password);
     }
 
-
     @Override
     public ArrayList<User> getAllUserDataFromDB() {
         return userMapper.getAllUserDataFromDB();
@@ -23,6 +22,12 @@ public class DataFacadeImpl implements DataFacade {
     public User updateUser(User user) throws LoginSampleException {
         userMapper.updateUser(user);
         return user;
+    }
+
+    @Override
+    public int deleteUser(int id) throws LoginSampleException {
+        userMapper.deleteUser(id);
+        return id;
     }
 
 

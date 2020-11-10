@@ -128,16 +128,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", telephoneNumber=" + telephoneNumber +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", isAdmin=" + isAdmin +
-                ", isWoman=" + isWoman +
-                ", birthday=" + birthday +
-                '}';
+        return "Name: " + firstName + " " + lastName +
+                " Number: " + telephoneNumber +
+                " email: " + email +
+                " birthday: " + birthday;
     }
 }

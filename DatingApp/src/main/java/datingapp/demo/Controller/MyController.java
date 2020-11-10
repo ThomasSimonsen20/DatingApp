@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.Objects;
+
 
 @Controller
 public class MyController {
@@ -48,10 +50,20 @@ public class MyController {
         }
     }
 
+    @PostMapping("/homeA")
+    public String homeA(WebRequest request, Model model) throws LoginSampleException {
+        User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+
+        int id = Integer.parseInt(Objects.requireNonNull(request.getParameter("id")));
+        loginController.deleteUser(id);
+
+        return "homeA";
+    }
 
     @PostMapping("/update")
     public String updateUser(WebRequest request, Model model) throws LoginSampleException {
-        User user = (User)request.getAttribute("user",WebRequest.SCOPE_SESSION);
+        User user = (User)request.getAttribute("user", WebRequest.SCOPE_SESSION);
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
@@ -65,7 +77,6 @@ public class MyController {
         return "settings";
     }
 
-
     @RequestMapping("/homeW")
     public String homeW(WebRequest request, Model model) throws LoginSampleException {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
@@ -74,7 +85,6 @@ public class MyController {
 
         return "homeW";
     }
-
 
     @RequestMapping("/homeM")
     public String homeM(WebRequest request, Model model) throws LoginSampleException {

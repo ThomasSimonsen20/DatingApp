@@ -91,6 +91,18 @@ public class UserMapper {
         }
     }
 
+    public void deleteUser(int id) throws LoginSampleException {
+        try {
+        Connection con = DBManager.getConnection();
+        String SQL = "DELETE FROM users where idUsers like ?";
+        PreparedStatement ps = con.prepareStatement(SQL);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
 
 
 

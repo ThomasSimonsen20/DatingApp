@@ -8,5 +8,20 @@
 
 <h1>Admin er Logged in</h1>
 
+<form name="delete" action="/homeA" method="post">
+    Type ID to delete user:<br>
+    <input type="text" name="id" value="id">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<div class="row">
+    <div th:each="user : ${User}">
+        <p th:utext="'Id: ' + ${user.getId()} + ' Name: ' + ${user.getFirstName()}
+           + ' ' + ${user.getLastName()} + ' Number: ' + ${user.telephoneNumber}
+           + ' email: ' + ${user.getEmail()} + ' Birhtday: ' + ${user.getBirthday()}" > Info på brugere  </p>
+    </div>
+</div>
+
 </body>
 </html>

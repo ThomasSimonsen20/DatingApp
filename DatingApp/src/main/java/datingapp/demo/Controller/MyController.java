@@ -50,18 +50,6 @@ public class MyController {
         }
     }
 
-    @PostMapping("/homeA")
-    public String homeA(WebRequest request, Model model) throws LoginSampleException {
-        User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
-
-        int id = Integer.parseInt(Objects.requireNonNull(request.getParameter("id")));
-        loginController.deleteUser(id);
-
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
-
-        return "homeA";
-    }
-
     @PostMapping("/update")
     public String updateUser(WebRequest request, Model model) throws LoginSampleException {
         User user = (User)request.getAttribute("user", WebRequest.SCOPE_SESSION);
@@ -76,6 +64,18 @@ public class MyController {
         loginController.updateUser(user);
 
         return "settings";
+    }
+
+    @PostMapping("/homeA")
+    public String homeA(WebRequest request, Model model) throws LoginSampleException {
+        User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
+
+        int id = Integer.parseInt(Objects.requireNonNull(request.getParameter("id")));
+        loginController.deleteUser(id);
+
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+
+        return "homeA";
     }
 
     @RequestMapping("/homeW")
@@ -112,6 +112,9 @@ public class MyController {
         request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
         request.setAttribute("role", user.isAdmin(), WebRequest.SCOPE_SESSION);
         request.setAttribute("isWoman", user.isWoman(), WebRequest.SCOPE_SESSION);
+        request.setAttribute("firstName", user.getFirstName(), WebRequest.SCOPE_SESSION);
+        request.setAttribute("lastName", user.getLastName(), WebRequest.SCOPE_SESSION);
+
     }
 
     @ExceptionHandler(Exception.class)

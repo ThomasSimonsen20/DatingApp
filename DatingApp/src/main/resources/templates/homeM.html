@@ -15,8 +15,8 @@
 
 </div>
 
-
-<h1>Mand Logget Ind</h1>
+<h1>Logget ind som</h1>
+<p th:text="${session.user.firstName} + ' ' + ${session.user.lastName}" th:unless="${session == null}">[...] > </p>
 
 
 <div class="row">

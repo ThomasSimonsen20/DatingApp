@@ -7,7 +7,6 @@
 </head>
 <body>
 
-<h1>Kvinde Logget Ind</h1>
 
 
 <div class="topnav">
@@ -17,7 +16,8 @@
 
 </div>
 
-
+<h1>Logget ind som</h1>
+<p th:text="${session.user.firstName} + ' ' + ${session.user.lastName}" th:unless="${session == null}">[...] > </p>
 
 <div class="row">
 <div th:each="user : ${UserViewerSelector}">

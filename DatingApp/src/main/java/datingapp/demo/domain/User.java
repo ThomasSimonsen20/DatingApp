@@ -1,8 +1,8 @@
 package datingapp.demo.domain;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class User {
     private int id;
@@ -13,10 +13,14 @@ public class User {
     private String password;
     private boolean isAdmin;
     private boolean isWoman;
-    private Date birthday;
+    private LocalDate birthday;
+
+    /* ----------------------------------------------------------------------------- */
+    /* ------------------------------ Contructors ---------------------------------- */
+    /* ----------------------------------------------------------------------------- */
 
 
-    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, Date birthday) {
+    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, LocalDate birthday) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,19 +47,23 @@ public class User {
 
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
+    /* ----------------------------------------------------------------------------- */
+    /* ------------------------------ Udregnere ------------------------------------ */
+    /* ----------------------------------------------------------------------------- */
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
 
-    /*
     public String calculateAge(){
         LocalDate todaysDate = LocalDate.now();
         return String.valueOf(Period.between(birthday, todaysDate).getYears());
-    }*/
+    }
+
+    /* ----------------------------------------------------------------------------- */
+    /* ------------------------------ Getters -------------------------------------- */
+    /* ----------------------------------------------------------------------------- */
+
+    public String getBirthday() {
+        return birthday.toString();
+    }
 
     public int getId() {
         return id;
@@ -89,6 +97,10 @@ public class User {
         return isWoman;
     }
 
+    /* ----------------------------------------------------------------------------- */
+    /* ------------------------------ Setters -------------------------------------- */
+    /* ----------------------------------------------------------------------------- */
+
     public void setId(int id) {
         this.id = id;
     }
@@ -120,11 +132,15 @@ public class User {
     public void setWoman(boolean woman) {
         isWoman = woman;
     }
-/*
+
     public void setBirthday(String birthday) {
         this.birthday = LocalDate.parse(birthday);
     }
-*/
+
+    /* ----------------------------------------------------------------------------- */
+    /* ------------------------------ ToString ------------------------------------- */
+    /* ----------------------------------------------------------------------------- */
+
 
     @Override
     public String toString() {

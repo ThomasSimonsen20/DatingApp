@@ -59,7 +59,7 @@ public class UserMapper {
                 user.setPassword(rs.getString("Password"));
                 user.setAdmin(rs.getBoolean("IsAdmin"));
                 user.setWoman(rs.getBoolean("isWoman"));
-                user.setBirthday(rs.getDate("Birthday"));
+                user.setBirthday(rs.getString("Birthday"));
 
                 userArrayList.add(user);
             }
@@ -84,7 +84,7 @@ public class UserMapper {
             ps.setString(6, user.getPassword());
             ps.setBoolean(7, user.isAdmin());
             ps.setBoolean(8, user.isWoman());
-            ps.setDate(9, user.getBirthday());
+            ps.setString(9, user.getBirthday());
             ps.executeUpdate();
         } catch (SQLException ex) {
             throw new LoginSampleException(ex.getMessage());

@@ -21,8 +21,7 @@
     <div th:each="user : ${UserViewerSelector}">
             <div class="column" th:with="picUrl=${user.getId()} + '.jpg'">
                 <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%">
-                <p th:utext="${user.getFirstName()}"> NAME & AGE  </p>
-               <!-- <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p> -->
+                <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
             </div>
         </div>
     </div>

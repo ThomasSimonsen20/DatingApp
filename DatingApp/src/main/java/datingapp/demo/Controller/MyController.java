@@ -84,6 +84,12 @@ public class MyController {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
+        model.addAttribute("Messages", messages);
+
+        String userMessage = request.getParameter("message");
+        if (userMessage != null) {
+            messages.addMessageToList(user.getFirstName(), userMessage);
+        }
 
         return "homeW";
     }
@@ -97,10 +103,14 @@ public class MyController {
         model.addAttribute("Messages", messages);
 
         String userMessage = request.getParameter("message");
-        messages.addMessageToList(user.getFirstName(), userMessage);
+        if (userMessage != null) {
+            messages.addMessageToList(user.getFirstName(), userMessage);
+        }
 
         return "homeM";
     }
+
+    
 
     @RequestMapping("/settings")
     public String settings(WebRequest request) {

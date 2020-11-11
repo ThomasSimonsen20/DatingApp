@@ -19,9 +19,9 @@
 
 <!-- Viser 4 tilfældige bruger af modsat køn -->
 <div class="row">
-    <div th:each="user : ${UserViewerSelector}">
-            <div class="column" th:with="picUrl=${user.getId()} + '.jpg'">
-                <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%">
+    <div class="column" th:each="user : ${UserViewerSelector}">
+            <div th:with="picUrl=${user.getId()} + '.jpg'">
+                <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%; height: 350px" alt="Profilbillede">
                 <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
             </div>
         </div>
@@ -34,20 +34,24 @@
 <div class="chat-popup" id="myForm">
 
     <form action="/homeM" class="form-container" method="post">
-        <h2>Message Board</h2>
+        <div class="messages-container">
+            <h3>Message Board</h3>
 
-        <div class="message-board" value="No Messages..">
+            <div class="message-board" value="No Messages..">
 
-            <div class="message-board-log"  th:each="message : ${Messages}" >
-                <p class="message-board-log-style" data-th-utext="${#strings.replace(#strings.escapeXml(message),'&#10;','&lt;br&gt;')}"></p>
+                <div class="message-board-log"  th:each="message : ${Messages}" >
+                    <p class="message-board-log-style" data-th-utext="${#strings.replace(#strings.escapeXml(message),'&#10;','&lt;br&gt;')}"></p>
+                </div>
             </div>
-            </div>
+        </div>
 
+        <div class="input-container">
             <label for="msg"><b>Message</b></label>
-            <input class="message-board-input" id="msg" type="text" name="message" placeholder="Type message.." required>
+            <textarea class="message-board-input" id="msg" name="message" placeholder="Type message.." required></textarea>
 
-        <button type="submit" class="btn">Send</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            <button type="submit" class="btn">Send</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </div>
     </form>
 </div>
 

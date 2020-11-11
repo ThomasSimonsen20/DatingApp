@@ -19,10 +19,6 @@ public class MyController {
     private UserViewerSelector userViewerSelector = new UserViewerSelector();
     private Messages messages = new Messages();
 
-
-
-
-
     @GetMapping("/")
     public String getHome() {
         return "index";
@@ -102,6 +98,7 @@ public class MyController {
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
         model.addAttribute("Messages", messages);
 
+
         String userMessage = request.getParameter("message");
         if (userMessage != null) {
             messages.addMessageToList(user.getFirstName(), userMessage);
@@ -145,7 +142,6 @@ public class MyController {
         request.setAttribute("isWoman", user.isWoman(), WebRequest.SCOPE_SESSION);
         request.setAttribute("firstName", user.getFirstName(), WebRequest.SCOPE_SESSION);
         request.setAttribute("lastName", user.getLastName(), WebRequest.SCOPE_SESSION);
-
     }
 
     @ExceptionHandler(Exception.class)

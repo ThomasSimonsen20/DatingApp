@@ -12,7 +12,7 @@ public class UserMapper {
     public User login(String email, String password) throws LoginSampleException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT idUsers, FirstName, LastName, TelephoneNumber, IsAdmin, isWoman FROM users "
+            String SQL = "SELECT idUsers, FirstName, LastName, TelephoneNumber, IsAdmin, isWoman, Birthday FROM users "
                     + "WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
@@ -27,8 +27,9 @@ public class UserMapper {
                 int telephoneNumber = rs.getInt("TelephoneNumber");
                 Boolean isAdmin = rs.getBoolean("IsAdmin");
                 Boolean isWoman = rs.getBoolean("isWoman");
+                String birthday = rs.getString("Birthday");
 
-                User user = new User(firstName, lastName, telephoneNumber, email, password, isAdmin, isWoman);
+                User user = new User(firstName, lastName, telephoneNumber, email, password, isAdmin, isWoman, birthday);
                 user.setId(id);
                 return user;
             } else {

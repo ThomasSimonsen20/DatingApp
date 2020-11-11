@@ -32,7 +32,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public User(String firstName, String lastName, int telephoneNumber, String email, String password, Boolean isAdmin, Boolean isWoman) {
+    public User(String firstName, String lastName, int telephoneNumber, String email, String password, Boolean isAdmin, Boolean isWoman, String birthday) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephoneNumber = telephoneNumber;
@@ -40,6 +40,7 @@ public class User {
         this.password = password;
         this.isAdmin = isAdmin;
         this.isWoman = isWoman;
+        this.birthday = LocalDate.parse(birthday);
 
     }
 

@@ -110,7 +110,22 @@ public class MyController {
         return "homeM";
     }
 
-    
+    @RequestMapping("/allusers")
+    public String allUsers(WebRequest request, Model model) throws LoginSampleException {
+
+        User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
+
+
+
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+
+
+
+        return "allusers";
+    }
+
+
+
 
     @RequestMapping("/settings")
     public String settings(WebRequest request) {

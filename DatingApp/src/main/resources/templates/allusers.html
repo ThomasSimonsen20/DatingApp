@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>AllUsers</title>
+    <link th:href="@{/styles/home.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="topnav">
+    <a href="/homeM">Forside</a>
+    <a href="/settings">Settings</a>
+    <a class="active" href="/allusers">Se brugere</a>
+    <a href="/">Logud</a>
+</div>
+
+<form name="add" action="/homeA" method="post">
+    Type ID to add user to favorites:<br>
+    <input type="text" name="id" placeholder="id">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<div class="row">
+    <div th:each="user : ${User}">
+        <div class="column" th:with="picUrl=${user.getId()} + '.jpg'">
+            <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%">
+            <p th:utext="${user.getId()} + '.</br>' + ${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
+

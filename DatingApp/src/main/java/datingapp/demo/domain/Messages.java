@@ -6,8 +6,10 @@ public class Messages {
 
     ArrayList<String> messages = new ArrayList<>();
 
-    public void addMessageToList(String message){
-        messages.add(message);
+    public void addMessageToList(String firstName, String message){
+        if (!message.isBlank()){
+            messages.add(firstName + ": " + message);
+        }
     }
 
     public ArrayList<String> getMessages() {

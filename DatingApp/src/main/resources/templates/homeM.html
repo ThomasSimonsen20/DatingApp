@@ -1,27 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:fd="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" >
     <title>HomeM</title>
     <link th:href="@{/styles/home.css}" rel="stylesheet">
 </head>
-<style>
-
-</style>
 <body>
-
 
 <div class="topnav">
     <a class="active" href="/homeM">Forside</a>
     <a href="/settings">Settings</a>
     <a href="/">Logud</a>
-
 </div>
 
-<h1>Logget ind som</h1>
-<p th:text="${session.user.firstName} + ' ' + ${session.user.lastName}" th:unless="${session == null}">[...] > </p>
+<!-- Velkomsthilsen -->
+<h1 th:text="'Velkommen, ' + ${session.user.firstName}" th:unless="${session == null}">[...] > </h1>
 
-
+<!-- Viser 4 tilfældige bruger af modsat køn -->
 <div class="row">
     <div th:each="user : ${UserViewerSelector}">
             <div class="column" th:with="picUrl=${user.getId()} + '.jpg'">
@@ -33,12 +28,6 @@
     </div>
 
 
-
-
-    </thead>
-</table>
-
-
 <!-- LINJEN NEDEUNDER MÅ IKKE SLETTES -->
 <!-- <button class="open-button" onclick="openForm()">Chat</button> -->
 
@@ -47,19 +36,15 @@
     <form action="/homeM" class="form-container" method="post">
         <h2>Message Board</h2>
 
+        <div class="message-board" value="No Messages..">
 
-        <div class="message-board">
-            <!-- <div  th:if="${Messages.isEmpty()}"> -->
-            <div class="message-board-log" placeholder="No messages.." th:each="message : ${Messages}">
+            <div class="message-board-log"  th:each="message : ${Messages}" >
                 <p class="message-board-log-style" data-th-utext="${#strings.replace(#strings.escapeXml(message),'&#10;','&lt;br&gt;')}"></p>
             </div>
-            <!-- </div> -->
             </div>
-
 
             <label for="msg"><b>Message</b></label>
             <input class="message-board-input" id="msg" type="text" name="message" placeholder="Type message.." required>
-            <!-- <textarea placeholder="Type message.." name="msg" required></textarea> -->
 
         <button type="submit" class="btn">Send</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>

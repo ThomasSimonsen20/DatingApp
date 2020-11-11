@@ -97,7 +97,7 @@ public class MyController {
         model.addAttribute("Messages", messages);
 
         String userMessage = request.getParameter("message");
-        messages.addMessageToList(userMessage);
+        messages.addMessageToList(user.getFirstName(), userMessage);
 
         return "homeM";
     }

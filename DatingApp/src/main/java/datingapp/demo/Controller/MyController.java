@@ -119,13 +119,29 @@ public class MyController {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
-        int idFavorite = Integer.parseInt(Objects.requireNonNull(request.getParameter("ID")));
+        //int idFavorite = Integer.parseInt(Objects.requireNonNull(request.getParameter("ID")));
+        //loginController.addUserToFavorites(user.getId(), idFavorite);
+
+        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+
+        return "allusers";
+    }
+
+
+
+    @RequestMapping("/addtofavorites")
+    public String addToFavorites(@RequestParam("id") int idFavorite, WebRequest request, Model model) throws LoginSampleException {
+
+        User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
+
         loginController.addUserToFavorites(user.getId(), idFavorite);
 
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
 
         return "allusers";
     }
+
+
 
 
 

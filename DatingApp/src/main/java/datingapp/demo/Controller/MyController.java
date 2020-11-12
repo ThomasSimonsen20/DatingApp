@@ -40,10 +40,10 @@ public class MyController {
         }
 
         else if (user.isWoman()){
-            return "homeW";
+            return "redirect:/homeW";
         }
         else {
-            return "homeM";
+            return "redirect:/homeM";
         }
     }
 
@@ -112,8 +112,10 @@ public class MyController {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
-        //int idFavorite = Integer.parseInt(Objects.requireNonNull(request.getParameter("id")));
-        //loginController.addUserToFavorites(user.getId(), idFavorite);
+        //System.out.println(request.getParameter("id"));
+        //int idFavorite = Integer.parseInt(Objects.requireNonNull("2"));
+        int idFavorite = Integer.parseInt(Objects.requireNonNull(request.getParameter("id")));
+        loginController.addUserToFavorites(user.getId(), idFavorite);
 
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
 

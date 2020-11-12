@@ -30,4 +30,11 @@ public class LoginController {
         facade.deleteUser(id);
         return id;
     }
+
+    public int addUserToFavorites(int idUser, int idFavorite) throws LoginSampleException {
+        facade.addUserToFavorites(idUser, idFavorite);
+        return idUser;
+    }
+
+
 }

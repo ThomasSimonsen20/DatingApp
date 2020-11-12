@@ -3,6 +3,7 @@ package datingapp.demo.domain;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class User {
     private int id;
@@ -14,25 +15,14 @@ public class User {
     private boolean isAdmin;
     private boolean isWoman;
     private LocalDate birthday;
+    private ArrayList<Integer> favorites;
 
     /* ----------------------------------------------------------------------------- */
     /* ------------------------------ Contructors ---------------------------------- */
     /* ----------------------------------------------------------------------------- */
 
 
-    public User(int id, String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, LocalDate birthday) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.telephoneNumber = telephoneNumber;
-        this.email = email;
-        this.password = password;
-        this.isAdmin = isAdmin;
-        this.isWoman = isWoman;
-        this.birthday = birthday;
-    }
-
-    public User(String firstName, String lastName, int telephoneNumber, String email, String password, Boolean isAdmin, Boolean isWoman, String birthday) {
+    public User(String firstName, String lastName, int telephoneNumber, String email, String password, boolean isAdmin, boolean isWoman, String birthday, ArrayList<Integer> favorites) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephoneNumber = telephoneNumber;
@@ -41,6 +31,7 @@ public class User {
         this.isAdmin = isAdmin;
         this.isWoman = isWoman;
         this.birthday = LocalDate.parse(birthday);
+        this.favorites = favorites;
 
     }
 
@@ -98,6 +89,10 @@ public class User {
         return isWoman;
     }
 
+    public ArrayList<Integer> getFavorites() {
+        return favorites;
+    }
+
     /* ----------------------------------------------------------------------------- */
     /* ------------------------------ Setters -------------------------------------- */
     /* ----------------------------------------------------------------------------- */
@@ -136,6 +131,10 @@ public class User {
 
     public void setBirthday(String birthday) {
         this.birthday = LocalDate.parse(birthday);
+    }
+
+    public void setFavorites(ArrayList<Integer> favorites) {
+        this.favorites = favorites;
     }
 
     /* ----------------------------------------------------------------------------- */

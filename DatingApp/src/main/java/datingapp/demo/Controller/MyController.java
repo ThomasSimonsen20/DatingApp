@@ -112,11 +112,10 @@ public class MyController {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
-
+        //int idFavorite = Integer.parseInt(Objects.requireNonNull(request.getParameter("id")));
+        //loginController.addUserToFavorites(user.getId(), idFavorite);
 
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
-
-
 
         return "allusers";
     }

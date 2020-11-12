@@ -8,5 +8,6 @@ public interface DataFacade {
     public ArrayList<User> getAllUserDataFromDB();
     public User updateUser(User user) throws LoginSampleException;
     public int deleteUser(int id) throws LoginSampleException;
+    public int addUserToFavorites(int idUser, int idFavorite) throws LoginSampleException;
 
 }

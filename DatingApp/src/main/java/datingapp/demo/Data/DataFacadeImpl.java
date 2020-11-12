@@ -30,5 +30,9 @@ public class DataFacadeImpl implements DataFacade {
         return id;
     }
 
-
+    @Override
+    public int addUserToFavorites(int idUser, int idFavorite) throws LoginSampleException {
+        userMapper.addUserToFavorites(idUser, idFavorite);
+        return idUser;
+    }
 }

@@ -1,5 +1,6 @@
 package datingapp.demo.Data;
 
+import com.mysql.cj.protocol.Resultset;
 import datingapp.demo.domain.LoginSampleException;
 import datingapp.demo.domain.User;
 
@@ -8,6 +9,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UserMapper {
+
+
+    ArrayList<Integer> favorites = new ArrayList<>();
 
     public User login(String email, String password) throws LoginSampleException {
         try {
@@ -20,6 +24,8 @@ public class UserMapper {
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
 
+
+
             if (rs.next()) {
                 int id = rs.getInt("idUsers");
                 String firstName = rs.getString("FirstName");
@@ -29,7 +35,21 @@ public class UserMapper {
                 Boolean isWoman = rs.getBoolean("isWoman");
                 String birthday = rs.getString("Birthday");
 
-                User user = new User(firstName, lastName, telephoneNumber, email, password, isAdmin, isWoman, birthday);
+
+                /*------ Laver select til at oprette favorites-listen------- */
+
+                String SQLFavorites = "SELECT * FROM favorites WHERE idUsers = ?";
+                PreparedStatement psFavorites = con.prepareStatement(SQLFavorites);
+                psFavorites.setInt(1, id);
+                ResultSet rsFavorites = psFavorites.executeQuery();
+
+                /*------ Laver loop til at oprette favorites-listen------- */
+
+                while (rsFavorites.next()) {
+                    favorites.add(rsFavorites.getInt("idUsersFavorite"));
+                }
+
+                User user = new User(firstName, lastName, telephoneNumber, email, password, isAdmin, isWoman, birthday, favorites);
                 user.setId(id);
                 return user;
             } else {
@@ -99,6 +119,19 @@ public class UserMapper {
         PreparedStatement ps = con.prepareStatement(SQL);
         ps.setInt(1, id);
         ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    public void addUserToFavorites(int idUser, int idFavorite) throws LoginSampleException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "INSERT INTO favorites (idUsers, idUsersFavorite) VALUES (?, ?);";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, idUser);
+            ps.setInt(2, idFavorite);
+            ps.executeUpdate();
         } catch (SQLException ex) {
             throw new LoginSampleException(ex.getMessage());
         }

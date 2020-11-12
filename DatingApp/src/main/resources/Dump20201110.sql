@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for macos10.15 (x86_64)
 --
--- Host: 127.0.0.1    Database: datingappdata
+-- Host: 127.0.0.1    Database: DatingAppData
 -- ------------------------------------------------------
 -- Server version	8.0.21
 
@@ -14,6 +14,34 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `favorites`
+--
+
+DROP TABLE IF EXISTS `favorites`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `favorites` (
+  `idFavorites` int NOT NULL AUTO_INCREMENT,
+  `idUsers` int NOT NULL,
+  `idUsersFavorite` int NOT NULL,
+  PRIMARY KEY (`idFavorites`),
+  UNIQUE KEY `idfavorites_UNIQUE` (`idFavorites`),
+  KEY `idUsers_idx` (`idUsers`),
+  CONSTRAINT `idUsers` FOREIGN KEY (`idUsers`) REFERENCES `users` (`idUsers`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `favorites`
+--
+
+LOCK TABLES `favorites` WRITE;
+/*!40000 ALTER TABLE `favorites` DISABLE KEYS */;
+INSERT INTO `favorites` VALUES (1,1,2),(2,1,4),(3,1,5),(4,2,7),(5,2,4),(6,5,6);
+/*!40000 ALTER TABLE `favorites` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -32,6 +60,7 @@ CREATE TABLE `users` (
   `IsAdmin` tinyint NOT NULL DEFAULT '0',
   `isWoman` tinyint NOT NULL,
   `Birthday` date DEFAULT NULL,
+  `PictureName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idUsers`),
   UNIQUE KEY `idUsers_UNIQUE` (`idUsers`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -43,12 +72,12 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Hanne','Jensen',12345678,'test1','test',1,1,'2000-11-06'),(2,'Suzi','Hansen',87654321,'test2','test',0,1,'2001-09-06'),(3,'Jørgen','Johnson',22445341,'test3','test',0,0,'1967-03-04'),(4,'Ejnar','Christensen',76587351,'test4','test',0,0,'1930-10-05'),(5,'Camilla','Jensen',66373829,'test5','test',0,1,'1999-04-09'),(6,'Jens','Nielsen',77890987,'test6','test',0,0,'1940-12-12'),(7,'Søren','Pedersen',11223344,'test7','test',0,0,'1955-03-03'),(8,'Janne','Karstensen',87336544,'test8','test',0,1,'1998-05-04'),(9,'Stinna','Johnson',77834647,'test9','test',0,1,'1998-03-10'),(10,'Klaus','Klausen',88776633,'test10','test',0,0,'1958-03-08');
+INSERT INTO `users` VALUES (1,'Hanne','Jensen',12345678,'test1','test',1,1,'2000-11-06','Hanne.jpg'),(2,'Suzi','Hansen',87654321,'test2','test',0,1,'2001-09-06','Suzi.jpg'),(3,'Jørgen','Johnson',22445341,'test3','test',0,0,'1967-03-04','Jørgen.jpg'),(4,'Ejnar','Christensen',76587351,'test4','test',0,0,'1930-10-05','Ejnar.jpg'),(5,'Camilla','Jensen',66373829,'test5','test',0,1,'1999-04-09',NULL),(6,'Jens','Nielsen',77890987,'test6','test',0,0,'1940-12-12',NULL),(7,'Søren','Pedersen',11223344,'test7','test',0,0,'1955-03-03',NULL),(8,'Janne','Karstensen',87336544,'test8','test',0,1,'1998-05-04',NULL),(9,'Stinna','Johnson',77834647,'test9','test',0,1,'1998-03-10',NULL),(10,'Klaus','Klausen',88776633,'test10','test',0,0,'1958-03-08',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'datingappdata'
+-- Dumping routines for database 'DatingAppData'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +89,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-10 10:56:38
+-- Dump completed on 2020-11-12 10:40:53

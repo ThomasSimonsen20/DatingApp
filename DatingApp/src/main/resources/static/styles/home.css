@@ -240,7 +240,17 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 
+.tbody {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-flow: wrap;
+}
 
+.tr {
+    display: grid;
+    padding-top: 15px;
+}
 
 /* ----------------------------------------------------------------------------- */
 /* ------------------------------ MEDIA SCREENS -------------------------------- */

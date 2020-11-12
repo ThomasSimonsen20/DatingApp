@@ -9,8 +9,8 @@
 
 <div class="topnav">
     <a href="/homeM">Forside</a>
-    <a href="/settings">Settings</a>
     <a class="active" href="/allusers">Se brugere</a>
+    <a href="/settings">Settings</a>
     <a href="/">Logud</a>
 </div>
 
@@ -29,20 +29,19 @@
 
 
 <table>
+    <!--
     <thead>
     <tr>
-
         <th>Name</th>
         <th>Age</th>
-
         <th></th>
     </tr>
     </thead>
-    <tbody>
-    <tr th:each="user: ${User}">
-        <td th:text="${user.getFirstName()}"></td>
-        <td th:text="${user.calculateAge()}"></td>
-        <td th:with="picUrl=${user.getId()} + '.jpg'"><img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%; height: 350px;"></td>
+    -->
+    <tbody class="tbody">
+    <tr class="tr" th:each="user: ${User}">
+        <td th:text="${user.getFirstName()} + ' ' + ${user.calculateAge()}"></td>
+        <td th:with="picUrl=${user.getId()} + '.jpg'"><img th:src="@{/images/{image}(image=${picUrl})}" style="width: 350px; height: 320px;"></td>
         <td>
             <a th:href="@{/addtofavorites(id=${user.getId()})}" class="btn">Add Favorite</a> <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
         </td>

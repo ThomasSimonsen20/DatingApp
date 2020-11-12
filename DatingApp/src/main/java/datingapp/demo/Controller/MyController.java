@@ -55,9 +55,16 @@ public class MyController {
 
         String firstName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
+        //int number = Integer.parseInt(Objects.requireNonNull(request.getParameter("number")));
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
 
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        //user.setTelephoneNumber(number);
+        user.setEmail(email);
+        user.setPassword(password);
         loginController.updateUser(user);
 
         return "settings";
@@ -143,6 +150,9 @@ public class MyController {
         request.setAttribute("isWoman", user.isWoman(), WebRequest.SCOPE_SESSION);
         request.setAttribute("firstName", user.getFirstName(), WebRequest.SCOPE_SESSION);
         request.setAttribute("lastName", user.getLastName(), WebRequest.SCOPE_SESSION);
+        request.setAttribute("number", user.getTelephoneNumber(), WebRequest.SCOPE_SESSION);
+        request.setAttribute("email", user.getEmail(), WebRequest.SCOPE_SESSION);
+        request.setAttribute("password", user.getPassword(), WebRequest.SCOPE_SESSION);
     }
 
     @ExceptionHandler(Exception.class)

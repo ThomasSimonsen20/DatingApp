@@ -29,17 +29,27 @@
     <h3>Skift infomation</h3>
 <form name="update" action="/update" method="post">
     Firstname:<br>
-    <input type="text" name="firstname" placeholder="firstname">
+    <input type="text" name="firstname" th:value="${session.user.firstName}">
     <br>
     Lastname:<br>
-    <input type="text" name="lastname" placeholder="lastname">
+    <input type="text" name="lastname" th:value="${session.user.lastName}">
+    <br>
+    <!--
+    Number:<br>
+    <input type="text" name="number" th:value="${session.user.number}">
+    <br> -->
+    Email:<br>
+    <input type="text" name="email" th:value="${session.user.email}">
+    <br>
+    Password:<br>
+    <input type="text" name="password" th:value="${session.user.password}">
     <br>
     <input type="submit" value="Submit">
 </form>
 </div>
-<!-- den viser brugeren selvom user lyser rødt, ved ikk hvorfor :/ -->
+<!-- den viser brugeren selvom user lyser rødt, ved ikk hvorfor :/
 <p th:text="${session.user}" th:unless="${session == null}">[...]</p>
-
+-->
 
 
 </body>

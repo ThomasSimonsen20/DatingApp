@@ -24,4 +24,6 @@ Klik herefter på "Start Export"
 10: Kunne udskrive en velkomsthilsen som indeholder navnet på brugeren som er logget ind. TJEK
 
 
-11: Fixe topnavn - 'Forside'-knappen sender brugeren et underligt sted hen som ikke virker
+11: Fixe topnavn - 'Forside'-knappen sender brugeren et underligt sted hen som ikke virker TJEK
+
+12: Slet kollonne PictureName i SQL

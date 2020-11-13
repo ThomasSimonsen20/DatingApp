@@ -38,4 +38,8 @@ public class SystemController {
     public ArrayList<User> getFavorites(int id) throws SystemException {
         return facade.getFavorites(id);
     }
+
+    public int removeFromFavorites(int id, int idFavorite) throws SystemException{
+        return facade.removeFromFavorites(id, idFavorite);
+    }
 }

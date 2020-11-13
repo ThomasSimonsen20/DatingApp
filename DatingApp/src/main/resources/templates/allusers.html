@@ -17,26 +17,11 @@
 </div>
 
 
-
-<!--
-
-<div class="row">
-    <div class="column" th:each="user : ${User}">
-        <div  th:with="picUrl=${user.getId()} + '.jpg'">
-            <img th:src="@{/images/{image}(image=${picUrl})}" style="width: 100%; height: 350px;">
-            <p th:utext="${user.getId()} + '.</br>' + ${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
-        </div>
-    </div>
-</div>
-
--->
-
-
 <table>
     <tbody class="tbody">
     <tr class="tr" th:each="user: ${UsersOFOppositeSex}">
-        <td th:text="${user.getFirstName()} + ' ' + ${user.calculateAge()}"></td>
-        <td th:with="picUrl=${user.getId()} + '.jpg'"><img th:src="@{/images/{image}(image=${picUrl})}" style="width: 350px; height: 320px;"></td>
+        <td th:with="picUrl=${user.getId()} + '.jpg'"><img th:src="@{/images/{image}(image=${picUrl})}"></td>
+        <td class="name-and-age" th:text="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE </td>
         <td>
             <a th:href="@{/addtofavorites(id=${user.getId()})}" class="btn">Tilføj Favorit</a> <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
         </td>

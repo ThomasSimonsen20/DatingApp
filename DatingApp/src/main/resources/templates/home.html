@@ -20,6 +20,7 @@
 <h1 th:text="'Velkommen, ' + ${session.user.firstName}" th:unless="${session == null}">[...] > </h1>
 
 <!-- Viser 4 tilfældige bruger af modsat køn -->
+<!--
 <div class="row">
     <div class="column" th:each="user : ${UserViewerSelector}">
             <div th:with="picUrl=${user.getId()} + '.jpg'">
@@ -28,41 +29,54 @@
             </div>
     </div>
 </div>
+-->
+
+<table class="center" style="padding-bottom: 20px">
+    <tbody class="tbody">
+    <tr class="tr" th:each="user: ${UserViewerSelector}">
+        <th:block th:with="picUrl=${user.getId()} + '.jpg'">
+            <td th:with="picUrl=${user.getId()} + '.jpg'"><img th:src="@{/images/{image}(image=${picUrl})}" ></td>
+            <td class="name-and-age" th:text="${user.getFirstName()} + ', ' + ${user.calculateAge()}"></td>
+        </th:block>
+    </tr>
+    </tbody>
+</table>
+
+
 
 <!-- Viser brugerens favoritter -->
-<h2>Her er dine favoritter</h2>
-<div class="row">
-    <div class="column" th:each="user : ${Favorites}">
-        <div th:with="picUrl=${user.getId()} + '.jpg'">
-            <img th:src="@{/images/{image}(image=${picUrl})}" alt="Profilbillede">
-            <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
-        </div>
-    </div>
-</div>
+<h1>Her er dine favoritter</h1>
+<table class="center">
+    <tbody class="tbody">
+    <tr class="tr" th:each="user: ${Favorites}">
+        <td th:with="picUrl=${user.getId()} + '.jpg'"><img th:src="@{/images/{image}(image=${picUrl})}" ></td>
+        <td class="name-and-age" th:text="${user.getFirstName()} + ', ' + ${user.calculateAge()}"></td>
+        <td>
+            <a th:href="@{/removefromfavorites(id=${user.getId()})}" class="btn">Fjern</a>
+        </td>
+        </th:block>
+    </tr>
+    </tbody>
+</table>
 
 
-<!-- LINJEN NEDEUNDER MÅ IKKE SLETTES -->
+<!-- Knap til at åbne opslagstavlen -->
 <button class="open-button" onclick="openForm()">Chat</button>
 
-
+<!-- opslagstavlen -->
 <div class="chat-popup" id="myForm">
-
     <form action="/home" class="form-container" method="post">
         <div class="messages-container">
             <h3>Opslagstavle</h3>
-
             <div class="message-board" value="No Messages..">
-
                 <div class="message-board-log"  th:each="message : ${Messages}" >
                     <p class="message-board-log-style" data-th-utext="${#strings.replace(#strings.escapeXml(message),'&#10;','&lt;br&gt;')}"></p>
                 </div>
             </div>
         </div>
-
         <div class="input-container">
             <label for="msg"><b>Besked</b></label>
             <textarea class="message-board-input" id="msg" name="message" placeholder="Skriv besked.." required></textarea>
-
             <button type="submit" class="btn">Send</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Luk</button>
         </div>
@@ -73,7 +87,6 @@
     function openForm() {
         document.getElementById("myForm").style.display = "block";
     }
-
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
     }

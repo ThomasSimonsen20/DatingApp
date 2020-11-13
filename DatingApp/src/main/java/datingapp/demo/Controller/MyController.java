@@ -79,7 +79,7 @@ public class MyController {
     }
 
     @RequestMapping("/home")
-    public String homeW(WebRequest request, Model model) throws SystemException {
+    public String home(WebRequest request, Model model) throws SystemException {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
         model.addAttribute("User" , systemController.getAllUserDataFromDB());
         model.addAttribute("Favorites" , systemController.getFavorites(user.getId()));
@@ -98,7 +98,7 @@ public class MyController {
 
 
     @RequestMapping("/allusers")
-    public String allUsersM(WebRequest request, Model model) throws SystemException {
+    public String allUsers(WebRequest request, Model model) throws SystemException {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
@@ -109,7 +109,7 @@ public class MyController {
 
 
     @RequestMapping("/addtofavorites")
-    public String addToFavoritesM(@RequestParam("id") int idFavorite, WebRequest request, Model model) throws SystemException {
+    public String addToFavorites(@RequestParam("id") int idFavorite, WebRequest request, Model model) throws SystemException {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
@@ -117,9 +117,19 @@ public class MyController {
 
         model.addAttribute("User" , systemController.getAllUserDataFromDB());
 
+        return "redirect:/allusers";
+    }
 
+    @RequestMapping("/removefromfavorites")
+    public String removeFromFavorites(@RequestParam("id") int idFavorite, WebRequest request, Model model) throws SystemException {
 
-        return "allusers";
+        User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
+
+        systemController.removeFromFavorites(user.getId(), idFavorite);
+
+        model.addAttribute("User" , systemController.getAllUserDataFromDB());
+
+        return "redirect:/home";
     }
 
 

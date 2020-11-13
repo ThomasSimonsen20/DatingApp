@@ -40,4 +40,10 @@ public class DataFacadeImpl implements DataFacade {
     public ArrayList<User> getFavorites(int id) {
         return userMapper.getFavorites(id);
     }
+
+    @Override
+    public int removeFromFavorites(int id, int idFavorite) throws SystemException {
+        userMapper.removeFromFavorites(id, idFavorite);
+        return id;
+    }
 }

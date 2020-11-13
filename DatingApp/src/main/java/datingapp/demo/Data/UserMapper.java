@@ -180,4 +180,17 @@ public class UserMapper {
 
         return favoritesList;
     }
+
+    public void removeFromFavorites(int id, int idFavorite) throws SystemException{
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "DELETE FROM favorites  where idusers like ? and idUsersFavorite like ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, id);
+            ps.setInt(2, idFavorite);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SystemException(ex.getMessage());
+        }
+    }
 }

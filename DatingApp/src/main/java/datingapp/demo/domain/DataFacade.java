@@ -11,4 +11,5 @@ public interface DataFacade {
     public int addUserToFavorites(int idUser, int idFavorite) throws SystemException;
     public ArrayList<User> getFavorites(int id) throws SystemException;
 
+    public int removeFromFavorites(int id, int idFavorite) throws SystemException;
 }

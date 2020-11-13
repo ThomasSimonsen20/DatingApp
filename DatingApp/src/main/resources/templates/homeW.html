@@ -22,12 +22,25 @@
 <div class="column" th:each="user : ${UserViewerSelector}">
     <div th:if="${!user.isWoman()}">
         <div th:with="picUrl=${user.getId()} + '.jpg'">
-            <img th:src="@{/images/{image}(image=${picUrl})}" style="height: 350px; width: 100%" alt="Profilbillede">
+            <img th:src="@{/images/{image}(image=${picUrl})}" alt="Profilbillede">
             <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
         </div>
 </div>
 </div>
 </div>
+
+<h2>Dine favoritter</h2>
+<div class="row">
+    <div class="column" th:each="user : ${UserViewerSelector}">
+        <div th:if="${!user.isWoman()}">
+            <div th:with="picUrl=${user.getId()} + '.jpg'">
+                <img th:src="@{/images/{image}(image=${picUrl})}" alt="Profilbillede">
+                <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- LINJEN NEDEUNDER MÅ IKKE SLETTES -->
 <button class="open-button" onclick="openForm()">Chat</button>

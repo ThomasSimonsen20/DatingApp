@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class UserMapper {
 
 
-    ArrayList<Integer> favorites = new ArrayList<>();
+
 
     public User login(String email, String password) throws LoginSampleException {
         try {
@@ -24,7 +24,7 @@ public class UserMapper {
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
 
-
+            ArrayList<Integer> favorites = new ArrayList<>();
 
             if (rs.next()) {
                 int id = rs.getInt("idUsers");
@@ -62,6 +62,8 @@ public class UserMapper {
 
     public ArrayList<User> getAllUserDataFromDB() {
         ArrayList<User> userArrayList = new ArrayList<>();
+        ArrayList<Integer> favorites = new ArrayList<>();
+        int currentUserId;
         try {
 
             Connection con = DBManager.getConnection();
@@ -69,10 +71,12 @@ public class UserMapper {
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
 
+
             while (rs.next()) {
 
                 User user = new User();
-                user.setId(rs.getInt("idUsers"));
+                currentUserId = rs.getInt("idUsers");
+                user.setId(currentUserId);
                 user.setFirstName(rs.getString("FirstName"));
                 user.setLastName(rs.getString("LastName"));
                 user.setTelephoneNumber(rs.getInt("TelephoneNumber"));
@@ -81,6 +85,21 @@ public class UserMapper {
                 user.setAdmin(rs.getBoolean("IsAdmin"));
                 user.setWoman(rs.getBoolean("isWoman"));
                 user.setBirthday(rs.getString("Birthday"));
+
+                /*------ Laver select til at oprette favorites-liste  ------- */
+
+                String SQLFavorites = "SELECT * FROM favorites WHERE idUsers = ?";
+                PreparedStatement psFavorites = con.prepareStatement(SQLFavorites);
+                psFavorites.setInt(1, currentUserId);
+                ResultSet rsFavorites = psFavorites.executeQuery();
+
+                /*------ Laver loop til at oprette favorites-listen ------- */
+
+                while (rsFavorites.next()) {
+                    favorites.add(rsFavorites.getInt("idUsersFavorite"));
+                }
+
+                user.setFavorites(favorites);
 
                 userArrayList.add(user);
             }

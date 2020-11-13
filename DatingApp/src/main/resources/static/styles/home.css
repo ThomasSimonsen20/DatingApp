@@ -34,7 +34,7 @@ h1 {
 .topnav a {
     display: inline-block;
     color: #fefff3;
-    background-color: rgba(153, 68, 215, 0.3);
+    background-color: rgba(171, 1, 7, 0.6);
     border-radius: 25px;
     text-align: center;
     padding: 14px 16px;
@@ -44,14 +44,14 @@ h1 {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-    background-color: #9944D7B6;
+    background-color: #ab0107;
     border-radius: 25px;
     color: #ffffff;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
-    background-color: #9944D7B6;
+    background-color: #ab0107;
     border-radius: 25px;
     color: white;
 }
@@ -83,6 +83,12 @@ h1 {
     display: table;
 }
 
+img{
+    border-radius: 10%;
+    height: 250px;
+    width: 100%
+}
+
 
 
 /* ----------------------------------------------------------------------------- */
@@ -110,7 +116,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 /* The popup chat - hidden by default */
 .chat-popup {
 
-    /*display: none;*/
+    display: none;
     position: fixed;
     bottom: 0;
     right: 15px;
@@ -212,7 +218,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 /* https://www.w3schools.com/css/css3_buttons.asp */
 
 .btn {
-    background-color: #9944D7B6;
+    background-color: #ab0107;
     border: none;
     color: white;
     padding: 7px 10px;

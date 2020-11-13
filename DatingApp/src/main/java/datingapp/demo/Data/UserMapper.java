@@ -170,7 +170,7 @@ public class UserMapper {
 
 
                 while (rsFavorites.next()) {
-                    favoritesList.add(getAllUserDataFromDB().get(rsFavorites.getInt("idUsersFavorite") -1));
+                    favoritesList.add(getAllUserDataFromDB().get(rsFavorites.getInt("idUsersFavorite")-1));
                 }
 
 

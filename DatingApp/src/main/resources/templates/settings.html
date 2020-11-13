@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{/styles/settings.css}" rel="stylesheet">
-    <link th:href="@{/styles/home.css}" rel="stylesheet">
+   <!-- <link th:href="@{/styles/home.css}" rel="stylesheet"> -->
     <title>Settings</title>
 
 
@@ -26,16 +26,16 @@
     <h3>Skift infomation</h3>
 <form name="update" action="/update" method="post">
     Fornavn:<br>
-    <input type="text" name="firstname" th:placeholder="${session.user.firstName}">
+    <input type="text" name="firstname" th:value="${session.user.firstName}">
     <br>
     Efternavn:<br>
-    <input type="text" name="lastname" th:placeholder="${session.user.lastName}">
+    <input type="text" name="lastname" th:value="${session.user.lastName}">
     <br>
     Email:<br>
-    <input type="text" name="email" th:placeholder="${session.user.email}">
+    <input type="text" name="email" th:value="${session.user.email}">
     <br>
     Adgangskode:<br>
-    <input type="text" name="password" th:placeholder="${session.user.password}">
+    <input type="text" name="password" th:value="${session.user.password}">
     <br>
     <input type="submit" value="Skift">
 </form>

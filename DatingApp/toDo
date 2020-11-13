@@ -32,8 +32,11 @@ Klik herefter på "Start Export"
 a) Exeption håndtering SIMON
 b) LoginController refakturering THOMAS
 c) Ændre sprog i koden THOMAS
+d) Kønsopdelt visning i Se Brugere html side
 
 14: NICE TO HAVE
 a) Vise favoritter i flere kolonner hvis der er over 4
 b) Åbne chat automatisk når man har sendt en besked THOMAS
+c) Rydde op i java koden så gentagelser får særskiltemetoder (Især i UserMapper)
+
 

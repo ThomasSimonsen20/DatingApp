@@ -1,5 +1,6 @@
 package datingapp.demo.domain;
 
+import datingapp.demo.Data.DataFacadeImpl;
 import datingapp.demo.Data.UserMapper;
 
 import java.util.ArrayList;
@@ -8,8 +9,7 @@ import java.util.Random;
 public class UserViewerSelector {
 
     Random random = new Random();
-    private UserMapper userMapper = new UserMapper();
-
+    private SystemController systemController = new SystemController(new DataFacadeImpl());
 
     public ArrayList<User> userViewSelector(boolean isWoman){
         ArrayList<Integer> selection = new ArrayList<>();
@@ -40,7 +40,7 @@ public class UserViewerSelector {
 
     public ArrayList<User> getArrayListOfMenInDB(){
         ArrayList<User> listOfMen = new ArrayList<>();
-        for (User user: userMapper.getAllUserDataFromDB()) {
+        for (User user: systemController.getAllUserDataFromDB()) {
             if (!user.isWoman()){
                 listOfMen.add(user);
             }
@@ -50,7 +50,7 @@ public class UserViewerSelector {
 
     public ArrayList<User> getArrayListOfWomenInDB(){
         ArrayList<User> listOfWomen = new ArrayList<>();
-        for (User user: userMapper.getAllUserDataFromDB()) {
+        for (User user: systemController.getAllUserDataFromDB()) {
             if (user.isWoman()){
                 listOfWomen.add(user);
             }

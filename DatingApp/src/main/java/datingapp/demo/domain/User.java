@@ -143,9 +143,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "Name: " + firstName + " " + lastName +
-                " Number: " + telephoneNumber +
+        return "Navn: " + firstName + " " + lastName +
+                " Nummer: " + telephoneNumber +
                 " email: " + email +
-                " birthday: " + birthday;
+                " Fødselsdag: " + birthday;
     }
 }

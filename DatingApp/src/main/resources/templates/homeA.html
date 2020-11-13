@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
-    <link th:href="@{/styles/home.css}" rel="stylesheet">
+    <link th:href="@{/styles/admin.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -13,20 +13,20 @@
     <a href="/">Logud</a>
 </div>
 
-<h1>Admin er Logged in</h1>
-
+<div class="divForm">
 <form name="delete" action="/homeA" method="post">
-    Type ID to delete user:<br>
+    Skriv ID for at slette bruger:<br>
     <input type="text" name="id" placeholder="id">
     <br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Slet">
 </form>
+</div>
 
 <div class="row">
     <div th:each="user : ${User}">
-        <p th:utext="'Id: ' + ${user.getId()} + ' Name: ' + ${user.getFirstName()}
-           + ' ' + ${user.getLastName()} + ' Number: ' + ${user.telephoneNumber}
-           + ' email: ' + ${user.getEmail()} + ' Birhtday: ' + ${user.getBirthday()}" > Info på brugere  </p>
+        <p th:utext="'Id: ' + ${user.getId()} + ' Navn: ' + ${user.getFirstName()}
+           + ' ' + ${user.getLastName()} + ' Nummer: ' + ${user.telephoneNumber}
+           + ' email: ' + ${user.getEmail()} + ' Fødselsdag: ' + ${user.getBirthday()}" > Info på brugere  </p>
     </div>
 </div>
 

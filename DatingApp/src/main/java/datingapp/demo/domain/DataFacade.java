@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public interface DataFacade {
 
-    public User login(String email, String password) throws LoginSampleException;
+    public User login(String email, String password) throws SystemException;
     public ArrayList<User> getAllUserDataFromDB();
-    public User updateUser(User user) throws LoginSampleException;
-    public int deleteUser(int id) throws LoginSampleException;
-    public int addUserToFavorites(int idUser, int idFavorite) throws LoginSampleException;
-    public ArrayList<User> getFavorites(int id) throws LoginSampleException;
+    public User updateUser(User user) throws SystemException;
+    public int deleteUser(int id) throws SystemException;
+    public int addUserToFavorites(int idUser, int idFavorite) throws SystemException;
+    public ArrayList<User> getFavorites(int id) throws SystemException;
 
 }

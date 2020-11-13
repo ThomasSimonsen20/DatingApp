@@ -1,11 +1,9 @@
 package datingapp.demo.Data;
 
-import com.mysql.cj.protocol.Resultset;
-import datingapp.demo.domain.LoginSampleException;
+import datingapp.demo.domain.SystemException;
 import datingapp.demo.domain.User;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UserMapper {
@@ -13,7 +11,7 @@ public class UserMapper {
 
 
 
-    public User login(String email, String password) throws LoginSampleException {
+    public User login(String email, String password) throws SystemException {
         try {
             Connection con = DBManager.getConnection();
             String SQL = "SELECT idUsers, FirstName, LastName, TelephoneNumber, IsAdmin, isWoman, Birthday FROM users "
@@ -53,10 +51,10 @@ public class UserMapper {
                 user.setId(id);
                 return user;
             } else {
-                throw new LoginSampleException("Could not validate user");
+                throw new SystemException("Could not validate user");
             }
         } catch (SQLException ex) {
-            throw new LoginSampleException(ex.getMessage());
+            throw new SystemException(ex.getMessage());
         }
     }
 
@@ -111,7 +109,7 @@ public class UserMapper {
         return userArrayList;
     }
 
-    public void updateUser(User user) throws LoginSampleException {
+    public void updateUser(User user) throws SystemException {
         try {
             Connection con = DBManager.getConnection();
             String SQL = "REPLACE INTO users (idUsers,FirstName,LastName, TelephoneNumber,Email, Password, IsAdmin, isWoman, Birthday) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -127,11 +125,11 @@ public class UserMapper {
             ps.setString(9, user.getBirthday());
             ps.executeUpdate();
         } catch (SQLException ex) {
-            throw new LoginSampleException(ex.getMessage());
+            throw new SystemException(ex.getMessage());
         }
     }
 
-    public void deleteUser(int id) throws LoginSampleException {
+    public void deleteUser(int id) throws SystemException {
         try {
         Connection con = DBManager.getConnection();
         String SQL = "DELETE FROM users where idUsers like ?";
@@ -139,11 +137,11 @@ public class UserMapper {
         ps.setInt(1, id);
         ps.executeUpdate();
         } catch (SQLException ex) {
-            throw new LoginSampleException(ex.getMessage());
+            throw new SystemException(ex.getMessage());
         }
     }
 
-    public void addUserToFavorites(int idUser, int idFavorite) throws LoginSampleException {
+    public void addUserToFavorites(int idUser, int idFavorite) throws SystemException {
         try {
             Connection con = DBManager.getConnection();
             String SQL = "INSERT INTO favorites (idUsers, idUsersFavorite) VALUES (?, ?);";
@@ -152,7 +150,7 @@ public class UserMapper {
             ps.setInt(2, idFavorite);
             ps.executeUpdate();
         } catch (SQLException ex) {
-            throw new LoginSampleException(ex.getMessage());
+            throw new SystemException(ex.getMessage());
         }
     }
 

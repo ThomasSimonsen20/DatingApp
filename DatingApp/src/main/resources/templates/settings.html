@@ -15,7 +15,7 @@
     <div class="topnav">
         <a href="/home">Forside</a>
         <a href="/allusers">Se brugere</a>
-        <a class="active" href="/settings">Settings</a>
+        <a class="active" href="/settings">Indstillinger</a>
         <a href="/">Logud</a>
     </div>
 </div>
@@ -25,29 +25,21 @@
 <div class="divForm">
     <h3>Skift infomation</h3>
 <form name="update" action="/update" method="post">
-    Firstname:<br>
+    Fornavn:<br>
     <input type="text" name="firstname" th:value="${session.user.firstName}">
     <br>
-    Lastname:<br>
+    Efternavn:<br>
     <input type="text" name="lastname" th:value="${session.user.lastName}">
     <br>
-    <!--
-    Number:<br>
-    <input type="text" name="number" th:value="${session.user.number}">
-    <br> -->
     Email:<br>
     <input type="text" name="email" th:value="${session.user.email}">
     <br>
-    Password:<br>
+    Adgangskode:<br>
     <input type="text" name="password" th:value="${session.user.password}">
     <br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Skift">
 </form>
 </div>
-<!-- den viser brugeren selvom user lyser rødt, ved ikk hvorfor :/
-<p th:text="${session.user}" th:unless="${session == null}">[...]</p>
--->
-
 
 </body>
 </html>

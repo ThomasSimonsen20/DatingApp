@@ -11,7 +11,7 @@
     <div class="topnav">
         <a class="active" href="/home">Forside</a>
         <a href="/allusers">Se brugere</a>
-        <a href="/settings">Settings</a>
+        <a href="/settings">Indstillinger</a>
         <a href="/">Logud</a>
     </div>
 </div>
@@ -44,16 +44,12 @@
 <!-- LINJEN NEDEUNDER MÅ IKKE SLETTES -->
 <button class="open-button" onclick="openForm()">Chat</button>
 
-<div th:if="${messageFlag}">
-openForm();
-</div>
-
 
 <div class="chat-popup" id="myForm">
 
     <form action="/home" class="form-container" method="post">
         <div class="messages-container">
-            <h3>Message Board</h3>
+            <h3>Opslagstavle</h3>
 
             <div class="message-board" value="No Messages..">
 
@@ -64,11 +60,11 @@ openForm();
         </div>
 
         <div class="input-container">
-            <label for="msg"><b>Message</b></label>
-            <textarea class="message-board-input" id="msg" name="message" placeholder="Type message.." required></textarea>
+            <label for="msg"><b>Besked</b></label>
+            <textarea class="message-board-input" id="msg" name="message" placeholder="Skriv besked.." required></textarea>
 
             <button type="submit" class="btn">Send</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Luk</button>
         </div>
     </form>
 </div>

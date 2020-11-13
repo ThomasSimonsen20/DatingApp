@@ -1,7 +1,7 @@
 package datingapp.demo.Data;
 
 import datingapp.demo.domain.DataFacade;
-import datingapp.demo.domain.LoginSampleException;
+import datingapp.demo.domain.SystemException;
 import datingapp.demo.domain.User;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class DataFacadeImpl implements DataFacade {
    private UserMapper userMapper = new UserMapper();
 
-    public User login(String email, String password) throws LoginSampleException {
+    public User login(String email, String password) throws SystemException {
         return userMapper.login(email, password);
     }
 
@@ -19,19 +19,19 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public User updateUser(User user) throws LoginSampleException {
+    public User updateUser(User user) throws SystemException {
         userMapper.updateUser(user);
         return user;
     }
 
     @Override
-    public int deleteUser(int id) throws LoginSampleException {
+    public int deleteUser(int id) throws SystemException {
         userMapper.deleteUser(id);
         return id;
     }
 
     @Override
-    public int addUserToFavorites(int idUser, int idFavorite) throws LoginSampleException {
+    public int addUserToFavorites(int idUser, int idFavorite) throws SystemException {
         userMapper.addUserToFavorites(idUser, idFavorite);
         return idUser;
     }

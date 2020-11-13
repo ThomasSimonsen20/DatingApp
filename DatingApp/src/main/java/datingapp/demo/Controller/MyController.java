@@ -14,7 +14,7 @@ import java.util.Objects;
 @Controller
 public class MyController {
 
-    private LoginController loginController = new LoginController(new DataFacadeImpl());
+    private SystemController systemController = new SystemController(new DataFacadeImpl());
     private UserViewerSelector userViewerSelector = new UserViewerSelector();
     private Messages messages = new Messages();
 
@@ -24,14 +24,14 @@ public class MyController {
     }
 
     @PostMapping("/login")
-    public String loginUser(WebRequest request, Model model) throws LoginSampleException {
+    public String loginUser(WebRequest request, Model model) throws SystemException {
         String email = request.getParameter("email");
         String pwd = request.getParameter("password");
 
-        User user = loginController.login(email, pwd);
+        User user = systemController.login(email, pwd);
         setSessionInfo(request, user);
 
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("User" , systemController.getAllUserDataFromDB());
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
         if (user.isAdmin()){
@@ -43,9 +43,9 @@ public class MyController {
     }
 
     @PostMapping("/update")
-    public String updateUser(WebRequest request, Model model) throws LoginSampleException {
+    public String updateUser(WebRequest request, Model model) throws SystemException {
         User user = (User)request.getAttribute("user", WebRequest.SCOPE_SESSION);
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("User" , systemController.getAllUserDataFromDB());
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
 
         String firstName = request.getParameter("firstname");
@@ -60,64 +60,62 @@ public class MyController {
         //user.setTelephoneNumber(number);
         user.setEmail(email);
         user.setPassword(password);
-        loginController.updateUser(user);
+        systemController.updateUser(user);
 
         return "settings";
     }
 
     @PostMapping("/homeA")
-    public String homeA(WebRequest request, Model model) throws LoginSampleException {
+    public String homeA(WebRequest request, Model model) throws SystemException {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
         int id = Integer.parseInt(Objects.requireNonNull(request.getParameter("id")));
-        loginController.deleteUser(id);
+        systemController.deleteUser(id);
 
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("User" , systemController.getAllUserDataFromDB());
 
 
         return "homeA";
     }
 
     @RequestMapping("/home")
-    public String homeW(WebRequest request, Model model) throws LoginSampleException {
+    public String homeW(WebRequest request, Model model) throws SystemException {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
-        model.addAttribute("Favorites" ,loginController.getFavorites(user.getId()));
+        model.addAttribute("User" , systemController.getAllUserDataFromDB());
+        model.addAttribute("Favorites" , systemController.getFavorites(user.getId()));
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
         model.addAttribute("Messages", messages);
 
-        boolean messageFlag = false;
+
         String userMessage = request.getParameter("message");
         if (userMessage != null) {
-            messageFlag = true;
             messages.addMessageToList(user.getFirstName(), userMessage);
-            model.addAttribute("messageFlag", messageFlag);
         }
 
-        return "home";
+        return "/home";
     }
 
 
 
     @RequestMapping("/allusers")
-    public String allUsersM(WebRequest request, Model model) throws LoginSampleException {
+    public String allUsersM(WebRequest request, Model model) throws SystemException {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("User" , systemController.getAllUserDataFromDB());
 
         return "allusers";
     }
 
 
     @RequestMapping("/addtofavorites")
-    public String addToFavoritesM(@RequestParam("id") int idFavorite, WebRequest request, Model model) throws LoginSampleException {
+    public String addToFavoritesM(@RequestParam("id") int idFavorite, WebRequest request, Model model) throws SystemException {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
-        loginController.addUserToFavorites(user.getId(), idFavorite);
+        systemController.addUserToFavorites(user.getId(), idFavorite);
 
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("User" , systemController.getAllUserDataFromDB());
 
         return "allusers";
     }

@@ -11,7 +11,7 @@
     <div class="topnav">
         <a href="/home">Forside</a>
         <a class="active" href="/allusers">Se brugere</a>
-        <a href="/settings">Settings</a>
+        <a href="/settings">Indstillinger</a>
         <a href="/">Logud</a>
     </div>
 </div>
@@ -38,7 +38,7 @@
         <td th:text="${user.getFirstName()} + ' ' + ${user.calculateAge()}"></td>
         <td th:with="picUrl=${user.getId()} + '.jpg'"><img th:src="@{/images/{image}(image=${picUrl})}" style="width: 350px; height: 320px;"></td>
         <td>
-            <a th:href="@{/addtofavorites(id=${user.getId()})}" class="btn">Add Favorite</a> <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
+            <a th:href="@{/addtofavorites(id=${user.getId()})}" class="btn">Tilføj Favorit</a> <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
         </td>
     </tr>
     </tbody>

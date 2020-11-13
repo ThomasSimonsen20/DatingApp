@@ -28,6 +28,7 @@ CREATE TABLE `favorites` (
   `idUsersFavorite` int NOT NULL,
   PRIMARY KEY (`idFavorites`),
   UNIQUE KEY `idfavorites_UNIQUE` (`idFavorites`),
+  UNIQUE KEY `idUsersFavorites_UNIQUE` (`idUsers`, `idUsersFavorite`),
   KEY `idUsers_idx` (`idUsers`),
   CONSTRAINT `idUsers` FOREIGN KEY (`idUsers`) REFERENCES `users` (`idUsers`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -86,9 +86,12 @@ public class MyController {
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
         model.addAttribute("Messages", messages);
 
+        boolean messageFlag = false;
         String userMessage = request.getParameter("message");
         if (userMessage != null) {
+            messageFlag = true;
             messages.addMessageToList(user.getFirstName(), userMessage);
+            model.addAttribute("messageFlag", messageFlag);
         }
 
         return "home";
@@ -145,7 +148,12 @@ public class MyController {
 
     @ExceptionHandler(Exception.class)
     public String anotherError(Model model, Exception exception) {
-        model.addAttribute("message",exception.getMessage());
+        if (exception.getMessage().contains("Duplicate entry")){
+            model.addAttribute("message", "Du har allerede denne person på din favoritliste");
+        }
+        else {
+            model.addAttribute("message",exception.getMessage());
+        }
         return "exceptionPage";
     }
 

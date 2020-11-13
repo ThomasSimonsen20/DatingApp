@@ -44,6 +44,11 @@
 <!-- LINJEN NEDEUNDER MÅ IKKE SLETTES -->
 <button class="open-button" onclick="openForm()">Chat</button>
 
+<div th:if="${messageFlag}">
+openForm();
+</div>
+
+
 <div class="chat-popup" id="myForm">
 
     <form action="/home" class="form-container" method="post">

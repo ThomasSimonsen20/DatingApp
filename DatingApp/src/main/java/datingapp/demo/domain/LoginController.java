@@ -37,4 +37,7 @@ public class LoginController {
     }
 
 
+    public ArrayList<User> getFavorites(int id) throws LoginSampleException {
+        return facade.getFavorites(id);
+    }
 }

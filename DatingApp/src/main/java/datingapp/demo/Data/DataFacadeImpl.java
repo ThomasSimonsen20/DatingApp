@@ -35,4 +35,9 @@ public class DataFacadeImpl implements DataFacade {
         userMapper.addUserToFavorites(idUser, idFavorite);
         return idUser;
     }
+
+    @Override
+    public ArrayList<User> getFavorites(int id) {
+        return userMapper.getFavorites(id);
+    }
 }

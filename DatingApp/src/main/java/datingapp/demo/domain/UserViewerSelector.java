@@ -38,8 +38,6 @@ public class UserViewerSelector {
         return resultList;
     }
 
-
-
     public ArrayList<User> getArrayListOfMenInDB(){
         ArrayList<User> listOfMen = new ArrayList<>();
         for (User user: userMapper.getAllUserDataFromDB()) {

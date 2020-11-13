@@ -74,6 +74,7 @@ public class MyController {
 
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
 
+
         return "homeA";
     }
 
@@ -81,6 +82,7 @@ public class MyController {
     public String homeW(WebRequest request, Model model) throws LoginSampleException {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
+        model.addAttribute("Favorites" ,loginController.getFavorites(user.getId()));
         model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
         model.addAttribute("Messages", messages);
 

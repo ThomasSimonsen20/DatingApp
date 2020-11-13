@@ -22,12 +22,21 @@
 <!-- Viser 4 tilfældige bruger af modsat køn -->
 <div class="row">
     <div class="column" th:each="user : ${UserViewerSelector}">
-
             <div th:with="picUrl=${user.getId()} + '.jpg'">
                 <img th:src="@{/images/{image}(image=${picUrl})}" alt="Profilbillede">
                 <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
             </div>
+    </div>
+</div>
 
+<!-- Viser brugerens favoritter -->
+<h2>Her er dine favoritter</h2>
+<div class="row">
+    <div class="column" th:each="user : ${Favorites}">
+        <div th:with="picUrl=${user.getId()} + '.jpg'">
+            <img th:src="@{/images/{image}(image=${picUrl})}" alt="Profilbillede">
+            <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
+        </div>
     </div>
 </div>
 

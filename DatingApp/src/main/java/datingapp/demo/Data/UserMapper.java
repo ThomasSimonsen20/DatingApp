@@ -157,7 +157,32 @@ public class UserMapper {
     }
 
 
+    public ArrayList<User> getFavorites(int id) {
+        ArrayList<User> favoritesList = new ArrayList<>();
+        try {
 
+            Connection con = DBManager.getConnection();
 
+            /*------ Laver select til at oprette favorites-liste  ------- */
 
+            String SQLFavorites = "SELECT * FROM favorites WHERE idUsers = ?";
+            PreparedStatement psFavorites = con.prepareStatement(SQLFavorites);
+            psFavorites.setInt(1, id);
+            ResultSet rsFavorites = psFavorites.executeQuery();
+
+            while (rsFavorites.next()) {
+
+                /*------ Laver loop til at oprette favorites-listen ------- */
+
+                while (rsFavorites.next()) {
+                    favoritesList.add(getAllUserDataFromDB().get(rsFavorites.getInt("idUsersFavorite") -1));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+
+        return favoritesList;
+    }
 }

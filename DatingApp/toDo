@@ -28,3 +28,12 @@ Klik herefter på "Start Export"
 
 12: Slet kollonne PictureName i SQL - TJEK
 
+13: NEED TO HAVE
+a) Exeption håndtering SIMON
+b) LoginController refakturering THOMAS
+c) Ændre sprog i koden THOMAS
+
+14: NICE TO HAVE
+a) Vise favoritter i flere kolonner hvis der er over 4
+b) Åbne chat automatisk når man har sendt en besked THOMAS
+

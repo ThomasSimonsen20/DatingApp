@@ -34,7 +34,7 @@
 
 <table>
     <tbody class="tbody">
-    <tr class="tr" th:each="user: ${User}">
+    <tr class="tr" th:each="user: ${UsersOFOppositeSex}">
         <td th:text="${user.getFirstName()} + ' ' + ${user.calculateAge()}"></td>
         <td th:with="picUrl=${user.getId()} + '.jpg'"><img th:src="@{/images/{image}(image=${picUrl})}" style="width: 350px; height: 320px;"></td>
         <td>

@@ -2,10 +2,12 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Exeptions</title>
+    <link th:href="@{/styles/home.css}" rel="stylesheet">
+
 </head>
 <body>
-<h1>An Error Occured!</h1>
-<p><span th:text="${message}"></span></p>
+<h1><span th:text="${message}"></span></h1>
+<a th:href="@{/allusers}" class="btn">Tilbage</a>
 </body>
 </html>

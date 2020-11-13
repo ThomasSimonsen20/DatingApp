@@ -102,7 +102,7 @@ public class MyController {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
-        model.addAttribute("User" , systemController.getAllUserDataFromDB());
+        model.addAttribute("UsersOFOppositeSex" , userViewerSelector.getUsersDividedBySex(user.isWoman()));
 
         return "allusers";
     }
@@ -116,6 +116,8 @@ public class MyController {
         systemController.addUserToFavorites(user.getId(), idFavorite);
 
         model.addAttribute("User" , systemController.getAllUserDataFromDB());
+
+
 
         return "allusers";
     }

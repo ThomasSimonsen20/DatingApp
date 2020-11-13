@@ -168,14 +168,11 @@ public class UserMapper {
             psFavorites.setInt(1, id);
             ResultSet rsFavorites = psFavorites.executeQuery();
 
-            while (rsFavorites.next()) {
-
-                /*------ Laver loop til at oprette favorites-listen ------- */
 
                 while (rsFavorites.next()) {
                     favoritesList.add(getAllUserDataFromDB().get(rsFavorites.getInt("idUsersFavorite") -1));
                 }
-            }
+
 
         } catch (SQLException e) {
             e.getMessage();

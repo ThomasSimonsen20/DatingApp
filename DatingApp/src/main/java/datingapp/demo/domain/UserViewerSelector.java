@@ -13,20 +13,14 @@ public class UserViewerSelector {
 
     public ArrayList<User> userViewSelector(boolean isWoman){
         ArrayList<Integer> selection = new ArrayList<>();
-        ArrayList<User> userList;
+        ArrayList<User> userList = getUsersDividedBySex(isWoman);
         ArrayList<User> resultList = new ArrayList<>();
         int counter = 0;
         int rand;
-        if (isWoman) {
-            userList = getArrayListOfMenInDB();
-        }
-        else {
-            userList = getArrayListOfWomenInDB();
-        }
 
         for (int i = 0; i < 4 ; i++) {
             rand = random.nextInt(userList.size()) ;
-            if (!selection.contains(rand) && userList.get(rand).isWoman() != isWoman){
+            if (!selection.contains(rand)){
                 selection.add(rand);
                 resultList.add(userList.get(selection.get(counter)));
                 counter++;
@@ -38,23 +32,18 @@ public class UserViewerSelector {
         return resultList;
     }
 
-    public ArrayList<User> getArrayListOfMenInDB(){
-        ArrayList<User> listOfMen = new ArrayList<>();
+    public ArrayList<User> getUsersDividedBySex(boolean iswoman){
+        ArrayList<User> resultList = new ArrayList<>();
+
         for (User user: systemController.getAllUserDataFromDB()) {
-            if (!user.isWoman()){
-                listOfMen.add(user);
+            if (user.isWoman() != iswoman){
+                resultList.add(user);
             }
         }
-        return listOfMen;
+        return resultList;
     }
 
-    public ArrayList<User> getArrayListOfWomenInDB(){
-        ArrayList<User> listOfWomen = new ArrayList<>();
-        for (User user: systemController.getAllUserDataFromDB()) {
-            if (user.isWoman()){
-                listOfWomen.add(user);
-            }
-        }
-        return listOfWomen;
-    }
+
+
+
 }

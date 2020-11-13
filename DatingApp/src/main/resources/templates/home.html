@@ -7,11 +7,13 @@
 </head>
 <body>
 
-<div class="topnav">
-    <a class="active" href="/homeM">Forside</a>
-    <a href="/allusers">Se brugere</a>
-    <a href="/settings">Settings</a>
-    <a href="/">Logud</a>
+<div th:unless="${session == null}">
+    <div class="topnav">
+        <a class="active" href="/home">Forside</a>
+        <a href="/allusers">Se brugere</a>
+        <a href="/settings">Settings</a>
+        <a href="/">Logud</a>
+    </div>
 </div>
 
 <!-- Velkomsthilsen -->
@@ -20,12 +22,14 @@
 <!-- Viser 4 tilfældige bruger af modsat køn -->
 <div class="row">
     <div class="column" th:each="user : ${UserViewerSelector}">
+
             <div th:with="picUrl=${user.getId()} + '.jpg'">
-                <img th:src="@{/images/{image}(image=${picUrl})}" class="img" alt="Profilbillede">
+                <img th:src="@{/images/{image}(image=${picUrl})}" alt="Profilbillede">
                 <p th:utext="${user.getFirstName()} + ', ' + ${user.calculateAge()}"> NAME & AGE  </p>
             </div>
-        </div>
+
     </div>
+</div>
 
 
 <!-- LINJEN NEDEUNDER MÅ IKKE SLETTES -->
@@ -33,7 +37,7 @@
 
 <div class="chat-popup" id="myForm">
 
-    <form action="/homeM" class="form-container" method="post">
+    <form action="/home" class="form-container" method="post">
         <div class="messages-container">
             <h3>Message Board</h3>
 

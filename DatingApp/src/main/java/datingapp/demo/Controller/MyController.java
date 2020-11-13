@@ -2,7 +2,6 @@ package datingapp.demo.Controller;
 
 
 import datingapp.demo.Data.DataFacadeImpl;
-import datingapp.demo.Data.UserMapper;
 import datingapp.demo.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,12 +37,8 @@ public class MyController {
         if (user.isAdmin()){
             return "homeA";
         }
-
-        else if (user.isWoman()){
-            return "redirect:/homeW";
-        }
         else {
-            return "redirect:/homeM";
+            return "redirect:/home";
         }
     }
 
@@ -82,7 +77,7 @@ public class MyController {
         return "homeA";
     }
 
-    @RequestMapping("/homeW")
+    @RequestMapping("/home")
     public String homeW(WebRequest request, Model model) throws LoginSampleException {
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
@@ -94,33 +89,15 @@ public class MyController {
             messages.addMessageToList(user.getFirstName(), userMessage);
         }
 
-        return "homeW";
+        return "home";
     }
 
-    @RequestMapping("/homeM")
-    public String homeM(WebRequest request, Model model) throws LoginSampleException {
 
-        User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
-        model.addAttribute("User" ,loginController.getAllUserDataFromDB());
-        model.addAttribute("UserViewerSelector", userViewerSelector.userViewSelector(user.isWoman()));
-        model.addAttribute("Messages", messages);
-
-
-        String userMessage = request.getParameter("message");
-        if (userMessage != null) {
-            messages.addMessageToList(user.getFirstName(), userMessage);
-        }
-
-        return "homeM";
-    }
 
     @RequestMapping("/allusers")
-    public String allUsers(WebRequest request, Model model) throws LoginSampleException {
+    public String allUsersM(WebRequest request, Model model) throws LoginSampleException {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
-
-        //int idFavorite = Integer.parseInt(Objects.requireNonNull(request.getParameter("ID")));
-        //loginController.addUserToFavorites(user.getId(), idFavorite);
 
         model.addAttribute("User" ,loginController.getAllUserDataFromDB());
 
@@ -128,9 +105,8 @@ public class MyController {
     }
 
 
-
     @RequestMapping("/addtofavorites")
-    public String addToFavorites(@RequestParam("id") int idFavorite, WebRequest request, Model model) throws LoginSampleException {
+    public String addToFavoritesM(@RequestParam("id") int idFavorite, WebRequest request, Model model) throws LoginSampleException {
 
         User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
 
@@ -140,10 +116,6 @@ public class MyController {
 
         return "allusers";
     }
-
-
-
-
 
 
     @RequestMapping("/settings")

@@ -2,17 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add To Favorite</title>
+    <title>Add To Favorites</title>
 </head>
 <body>
 <div class="container">
     <h1>List of favorites</h1>
     <div th:each="user : ${User}">
     <p th:text="'ID: ' + ${user}"/>
-    <p th:text="'First Name: ' + ${student.firstName}"/>
-    <p th:text="'LastName: ' + ${student.lastName}"/>
-    <p th:text="${#temporals.format(student.enrollmentDate, 'd MMMM yyyy')}"/>
-    <p th:text="'CPR: ' + ${student.cpr}"/>
+
     </div>
 
 </div>

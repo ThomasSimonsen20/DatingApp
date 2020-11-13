@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{/styles/settings.css}" rel="stylesheet">
+    <link th:href="@{/styles/home.css}" rel="stylesheet">
     <title>Settings</title>
 
 
 </head>
 <body>
 
-<div th:if="${session.isWoman}" th:unless="${session == null}">
+
+<div th:unless="${session == null}">
     <div class="topnav">
-        <a href="/homeW">Forside</a>
+        <a href="/home">Forside</a>
         <a href="/allusers">Se brugere</a>
         <a class="active" href="/settings">Settings</a>
         <a href="/">Logud</a>
     </div>
 </div>
 
-<div th:if="${!session.isWoman}" th:unless="${session == null}">
-    <div class="topnav">
-        <a href="/homeM">Forside</a>
-        <a class="active" href="/settings">Settings</a>
-        <a href="/">Logud</a>
-    </div>
-</div>
+
 
 <div class="divForm">
     <h3>Skift infomation</h3>

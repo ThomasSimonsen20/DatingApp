@@ -7,12 +7,16 @@
 </head>
 <body>
 
-<div class="topnav">
-    <a href="/homeM">Forside</a>
-    <a class="active" href="/allusers">Se brugere</a>
-    <a href="/settings">Settings</a>
-    <a href="/">Logud</a>
+<div th:unless="${session == null}">
+    <div class="topnav">
+        <a href="/home">Forside</a>
+        <a class="active" href="/allusers">Se brugere</a>
+        <a href="/settings">Settings</a>
+        <a href="/">Logud</a>
+    </div>
 </div>
+
+
 
 <!--
 
@@ -29,15 +33,6 @@
 
 
 <table>
-    <!--
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th></th>
-    </tr>
-    </thead>
-    -->
     <tbody class="tbody">
     <tr class="tr" th:each="user: ${User}">
         <td th:text="${user.getFirstName()} + ' ' + ${user.calculateAge()}"></td>
